@@ -9,7 +9,13 @@ Make sure you have the following installed:
 - create  a new folder "db" within data (e.g c:/data/db)
         
 # Launch application:
-run the following commands:
+
+Start mongodb by navigating to the folder c:/mongodb/bin and run:
+```sh
+$ mongod
+```
+
+Start the application by running the following commands:
 ```sh
 $ npm install
 $ node server
