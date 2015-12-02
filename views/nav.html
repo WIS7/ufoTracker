@@ -1,0 +1,14 @@
+<nav class="navbar navbar-inverse" role="navigation" ng-controller="navCtrl">
+	<div class="navbar-header">
+		<a class="navbar-brand" ui-sref="home">UFO</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a ui-sref="home">Home</a></li>
+        <li><a ui-sref="about">About</a></li>
+        <li><a ui-sref="sightings">Ufo Sightings</a></li>
+        <li ng-show="isLoggedIn()"><a ui-sref="profile">
+            {{ currentUser() }}
+        </a></li>
+        <li ng-show="isLoggedIn()"><a ui-sref="home" ng-click="logOut()">Log Out</a></li>
+    </ul>
+</nav>
