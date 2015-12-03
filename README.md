@@ -15,7 +15,7 @@ Start mongodb by navigating to the folder c:/mongodb/bin and run:
 $ mongod
 ```
 
-Start the application by running the following commands:
+Start the application by navigating to the applications folder location and run the following commands:
 ```sh
 $ npm install
 $ node server
