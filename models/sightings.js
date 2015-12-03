@@ -2,16 +2,16 @@
 var mongoose = require('mongoose');
 
 var sightingSchema = new mongoose.Schema({
-	_sightingID: mongoose.Schema.Types.ObjectId,
-	title: String, 
+    _sightingID: mongoose.Schema.Types.ObjectId,
+	title: String,
     description: String,
     author: String,
     comments: String,
     url: String,
     date: Date,
     coordinate: {
-    	longitude: String,
-    	latitude: String
+    	longitude: Number,
+    	latitude: Number
     }
 });
 
