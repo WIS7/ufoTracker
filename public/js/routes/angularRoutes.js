@@ -50,5 +50,11 @@ ufoApp.config(function($stateProvider, $urlRouterProvider) {
               url: '/sightings', 
               templateUrl: 'sightings.html',
               controller: 'sightingsCtrl'
-        }); 
+        })
+
+        .state('search', {
+            url: '/search',
+            templateUrl: 'search.html',
+            controller: 'searchCtrl'
+        })
 });

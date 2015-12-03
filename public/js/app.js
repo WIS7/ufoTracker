@@ -1,3 +1,3 @@
 // Module = container for different part of app
-var ufoApp = angular.module('ufoApp', ['ui.router']);
-
+// Dependency -> angucomplete-alt for easy search
+var ufoApp = angular.module('ufoApp', ['ui.router', 'angucomplete-alt']);

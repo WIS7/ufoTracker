@@ -4,6 +4,7 @@
   "private": true,
   "main": "server.js",
   "dependencies": {
+    "angucomplete-alt": "^2.1.0",
     "body-parser": "~1.14.1",
     "debug": "~2.2.0",
     "ejs": "^2.3.4",
