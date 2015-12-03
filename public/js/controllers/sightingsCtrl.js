@@ -9,7 +9,11 @@ ufoApp.controller('sightingsCtrl',['$scope','sightings','auth',
 	    $scope.titlePage = "Post a new Sighting!";
 	    $scope.isLoggedIn = auth.isLoggedIn;
 
-	    sightings.getSightings($scope);
+	    
+	    sightings.getSightings().
+	    	success(function(response){
+    			$scope.sightings = response;
+    	});
 
 		$scope.addSighting = function(){
 			if(!$scope.title || $scope.title === '' || 
@@ -23,7 +27,16 @@ ufoApp.controller('sightingsCtrl',['$scope','sightings','auth',
 			  	description: $scope.description,
 			  	author: $scope.author
 			};
-			sightings.postSighting($scope, dataObj);
+
+			sightings.postSighting(dataObj).
+				success(function(){
+					//scope.sightings.push(dataObj);
+			});
+		
+			sightings.getSightings().
+			    success(function(response){
+		    		$scope.sightings = response;
+		    });  
 
 			$scope.title = '';
 			$scope.description = '';

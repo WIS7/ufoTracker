@@ -47,6 +47,7 @@ ufoApp.config(function($stateProvider, $urlRouterProvider) {
         })
 
         .state('sightings', {
+              cache: false,
               url: '/sightings', 
               templateUrl: 'sightings.html',
               controller: 'sightingsCtrl'
