@@ -19,10 +19,12 @@ module.exports = function(app) {
 
     app.post('/sightings', auth, function(req, res, next) {
         // create new sighting and save it
-        var newSighting = new Sighting(req.body);
-        newSighting.save(function(err, newSighting){
+        var form = req.body;
+        form._sightingID = new mongoose.Types.ObjectId;
+        var newSighting = new Sighting(form);
+        console.log(form);
+        newSighting.save(function(err){
             if(err){return next(err);}
-            res.json(newSighting);
         });
     });
 

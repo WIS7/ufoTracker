@@ -1,5 +1,5 @@
-ufoApp.controller('sightingsCtrl',['$scope','sightings','auth',  
-	function($scope,sightings,auth){
+ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',  
+	function($scope,$state,sightings,auth){
 		// Small function to toggle a button
 		$scope.bool = false;
 		$scope.hideShow = function() {
@@ -31,7 +31,7 @@ ufoApp.controller('sightingsCtrl',['$scope','sightings','auth',
 				success(function(){
 					//scope.sightings.push(dataObj);
 			});
-			// maybe ajax? 
+ 
 			sightings.getSightings().
 			    success(function(response){
 		    		$scope.sightings = response;
@@ -40,5 +40,9 @@ ufoApp.controller('sightingsCtrl',['$scope','sightings','auth',
 			$scope.title = '';
 			$scope.description = '';
 		};
+
+		$scope.viewSighting = function(sightingID){
+			$state.go('sighting', {id: sightingID});
+		}
 	}
 ]);
