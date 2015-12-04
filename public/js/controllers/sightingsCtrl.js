@@ -17,22 +17,21 @@ ufoApp.controller('sightingsCtrl',['$scope','sightings','auth',
 
 		$scope.addSighting = function(){
 			if(!$scope.title || $scope.title === '' || 
-				!$scope.description || $scope.description === '' || 
-				!$scope.author || $scope.author === '') 
+				!$scope.description || $scope.description === '') 
 			{ 	
 				return;
 			}
 			var dataObj = {
 			  	title: $scope.title,
 			  	description: $scope.description,
-			  	author: $scope.author
+			  	author: auth.currentUser()
 			};
 
 			sightings.postSighting(dataObj).
 				success(function(){
 					//scope.sightings.push(dataObj);
 			});
-		
+			// maybe ajax? 
 			sightings.getSightings().
 			    success(function(response){
 		    		$scope.sightings = response;
@@ -40,7 +39,6 @@ ufoApp.controller('sightingsCtrl',['$scope','sightings','auth',
 
 			$scope.title = '';
 			$scope.description = '';
-			$scope.author = '';
 		};
 	}
 ]);
