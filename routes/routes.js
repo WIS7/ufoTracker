@@ -30,7 +30,6 @@ module.exports = function(app) {
         var form = req.body;
         form._sightingID = new mongoose.Types.ObjectId;
         var newSighting = new Sighting(form);
-        console.log(form);
         newSighting.save(function(err){
             if(err){return next(err);}
         });

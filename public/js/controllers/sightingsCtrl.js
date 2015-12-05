@@ -29,7 +29,10 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',
 			  	author: auth.currentUser()
 			};
 
-			sightings.postSighting(dataObj);
+			sightings.postSighting(dataObj).
+				success(function(){
+					alert("New Sighting added successfully");
+			});
  
 			setSightings();  
 

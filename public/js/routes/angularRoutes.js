@@ -19,25 +19,13 @@ ufoApp.config(function($stateProvider, $urlRouterProvider) {
         .state('login', {
               url: '/login', 
               templateUrl: 'login.html',
-              controller: 'authCtrl',
-              onEnter: // if logged in no need to login again
-              ['$state', 'auth', function($state, auth){
-                if(auth.isLoggedIn()){
-                  $state.go('profile');
-                }
-              }]
+              controller: 'authCtrl'
         })
 
         .state('signup', {
               url: '/signup', 
               templateUrl: 'signup.html',
-              controller: 'authCtrl',
-              onEnter: // if logged in no need to signup again
-              ['$state', 'auth', function($state, auth){
-                if(auth.isLoggedIn()){
-                  $state.go('profile');
-                }
-              }]
+              controller: 'authCtrl'
         })
 
         .state('profile', {
