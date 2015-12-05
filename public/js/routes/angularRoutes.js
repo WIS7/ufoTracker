@@ -55,7 +55,7 @@ ufoApp.config(function($stateProvider, $urlRouterProvider) {
 
         .state('sighting', {
               cache: false,
-              url: '/sighting/{id}', 
+              url: '/sighting/{_sightingID}', 
               templateUrl: 'sighting.html',
               controller: 'sightingCtrl'
         })

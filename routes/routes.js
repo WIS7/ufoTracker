@@ -7,6 +7,14 @@ var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
 module.exports = function(app) {
 
+    app.get('/sighting', function(req, res, next){
+        var _sightingID = req.query._sightingID;
+        Sighting.findOne({'_sightingID': _sightingID},function(err, sighting){
+            if(err){return next(err);}
+            res.json(sighting);
+         });
+    });
+
     app.get('/sightings', function(req, res, next){
         // get all sightings from db
         // todo aparte file die alle db queries

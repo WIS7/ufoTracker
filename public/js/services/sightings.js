@@ -4,6 +4,14 @@
 ufoApp.factory('sightings', ['$http', 'auth', function($http, auth){
 	var obj = {};
 
+	obj.getOneSighting = function(sightingID){
+		return $http.get('/sighting/', { 
+			params:
+				{"_sightingID": sightingID}
+			});
+	};
+
+
 	obj.getSightings = function(){
 		return $http.get('/sightings');
 	};
