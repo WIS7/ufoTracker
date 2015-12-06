@@ -2,8 +2,9 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',
 	function($scope,$state,sightings,auth){
 		$scope.titlePage = "Post a new Sighting!";
 	    $scope.isLoggedIn = auth.isLoggedIn;
-		// Small function to toggle a button
 		$scope.bool = false;
+		$scope.content = "";
+
 		$scope.hideShow = function() {
 			$scope.bool = !($scope.bool);
 		}
@@ -14,8 +15,6 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',
 	    			$scope.sightings = response;
 	    	});
 	    }
-
-	    setSightings();
 
 		$scope.addSighting = function(){
 			if(!$scope.title || $scope.title === '' || 
@@ -85,23 +84,19 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',
 
 
 		$scope.writeComment = function(sightingID, content){
-			alert(content);
 			if(!content || content === '') 
-			{ 	
-				alert("return");
-				return;
-			}
+			{return;}
 			var dataObj = {
 			  	content: content,
 			  	author: auth.currentUser(),
 			  	_sightingID: sightingID
 			};
 			sightings.postComment(dataObj).success(function(){
-					alert("New Comment added successfully");
+				alert("New Comment added successfully");
 			});
-
 			$scope.content = '';
 		};
 
+		setSightings();
 	}
 ]);
