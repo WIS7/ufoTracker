@@ -22,7 +22,7 @@ ufoApp.controller('mapCtrl',
                         map: $scope.map
                     });
                     var infowindow = new google.maps.InfoWindow({
-                        content: '<p>Marker Location: ' + marker.getPosition() + '</p>'
+                        content: '<p>Sighting Location: ' + marker.getPosition() + '</p>'
                     });
 
                     // User can click on a marker to get a detailed location
@@ -40,5 +40,4 @@ ufoApp.controller('mapCtrl',
             };
             setSighting();
 
-
-        }])
+        }]);

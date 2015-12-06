@@ -26,8 +26,13 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',
 			var dataObj = {
 			  	title: $scope.title,
 			  	description: $scope.description,
+				coordinate: {
+					longitude: $scope.longitude,
+					latitude: $scope.latitude
+				},
 			  	author: auth.currentUser()
 			};
+			console.log(dataObj);
 
 			sightings.postSighting(dataObj).
 				success(function(){
