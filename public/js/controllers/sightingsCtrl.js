@@ -83,14 +83,16 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',
 			$state.go('sighting', {_sightingID: sightingID});
 		}
 
-		$scope.writeComment = function(sightingID){
-			if(!$scope.content || $scope.content === '') 
+
+		$scope.writeComment = function(sightingID, content){
+			alert(content);
+			if(!content || content === '') 
 			{ 	
-				alert("retirn");
+				alert("return");
 				return;
 			}
 			var dataObj = {
-			  	content: $scope.content,
+			  	content: content,
 			  	author: auth.currentUser(),
 			  	_sightingID: sightingID
 			};
