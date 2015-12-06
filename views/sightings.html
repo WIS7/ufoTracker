@@ -90,8 +90,10 @@
 					 	</p>
 						<button ng-click="viewSighting(sighting._sightingID)">view</button>
 						<hr>
-						<input type="text" placeholder="Comment" ng-model="content"></input>
-						<button ng-show="isLoggedIn()" ng-click="writeComment(sighting._sightingID,content)">Add a comment</button>	
+						<div ng-show="isLoggedIn()">
+							<input type="text" placeholder="Comment" ng-model="content"></input>
+							<button ng-click="writeComment(sighting._sightingID,content)">Add a comment</button>
+						</div>	
 				 	</div>
 				</div>
 			</div>
