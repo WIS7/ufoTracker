@@ -42,11 +42,20 @@
 							<input type="text" class="form-control" placeholder="Location (longitude)" ng-model="longitude"></input>
 						</div>
 					</div>
-		 			<div>
-						<button class="btn btn-warning" type="submit">
-							New Sighting
-						</button>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">
+							Location (address)
+						</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" placeholder="Location (address)" ng-model="address"></input>
+						</div>
 					</div>
+					<div>
+						<button class='btn btn-warning' ng-click="previewLocation()">Preview location</button>
+						<button class="btn btn-warning" type="submit">New Sighting</button>
+					</div>
+					<br>
+		 			<div id="map_canvas" style="width: 400px; height: 500px;"></div>
 				</form>
 			</div>
 		</aside>
