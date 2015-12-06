@@ -14,6 +14,7 @@ var db = require('./config/database.js');
 mongoose.connect(db.url); 
 require('./models/user');
 require('./models/sightings');
+require('./models/comments');
 require('./config/passport'); 
 
 // Setting up the view to be plain html + access to need files

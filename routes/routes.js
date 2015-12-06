@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Sighting = mongoose.model('Sighting');
 var User = mongoose.model('User');
+var Comment = mongoose.model('Comment');
 var passport = require('passport');
 var jwt = require('express-jwt');
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
@@ -32,6 +33,25 @@ module.exports = function(app) {
         var newSighting = new Sighting(form);
         newSighting.save(function(err){
             if(err){return next(err);}
+            res.send('POST request successful');
+        });
+    });
+
+    app.get('/comments', function(req, res, next){
+        var _sightingID = req.query._sightingID;
+        Comment.find({'_sightingID': _sightingID},function(err, sighting){
+            if(err){return next(err);}
+            res.json(sighting);
+         });
+    });
+
+    app.post('/comment', auth, function(req, res, next) {
+        var form = req.body;
+        var newComment = new Comment(form);
+        console.log(form);
+        newComment.save(function(err){
+            if(err){return next(err);}
+            res.send('POST request successful');
         });
     });
 

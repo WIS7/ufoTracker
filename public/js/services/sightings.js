@@ -25,5 +25,22 @@ ufoApp.factory('sightings', ['$http', 'auth', function($http, auth){
    		);
 	};
 
+	obj.postComment = function(dataObj){
+		console.log("ok");
+		return $http.post('/comment', dataObj,
+			{headers: {Authorization: 
+				'Bearer '+ auth.getToken()
+				}
+   			}
+   		);
+	};
+
+	obj.getComments = function(sightingID){
+		return $http.get('/comments/', { 
+			params:
+				{"_sightingID": sightingID}
+			});
+	};
+
 	return obj;
 }]);

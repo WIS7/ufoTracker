@@ -6,7 +6,7 @@ var sightingSchema = new mongoose.Schema({
 	title: String,
     description: String,
     author: String,
-    comments: String,
+    comments: [mongoose.Schema.Types.ObjectId],
     url: String,
     date: Date,
     coordinate: {

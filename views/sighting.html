@@ -1,5 +1,4 @@
 <div class="container">
-	{{ID}}
 	<div class="list-group">
 		<div class="list-group-item">
 		 	<h4 class="text-center lead list-group-item-heading">
@@ -20,6 +19,20 @@
 		 	</p>
 			<div ng-controller="mapCtrl">
 				<div id="map_canvas" style="width: 400px; height: 500px;"></div>
+			</div>
+			<hr>
+			<div ng-repeat="comment in comments">
+				<div class="list-group">
+					<div class="list-group-item">
+					 	<p>
+					 		{{comment.content}}
+					 	</p>
+					 	<hr>
+					 	<p class="text-left lead list-group-item-text">
+					 		{{comment.author}}
+					 	</p>	
+				 	</div>
+				</div>
 			</div>
 		</div>
 	</div>

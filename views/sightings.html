@@ -1,6 +1,5 @@
 <div class="container">
 	<div class="row">
-	
 		<aside class="col-md-6">
 			<div ng-hide="isLoggedIn()">
 			  <h4>You need to <a ui-sref="login">Log In</a> or <a ui-sref="signup">Sign up</a> before you can add a new sightings.</h4>
@@ -68,7 +67,12 @@
 					 	<p class="text-right list-group-item-text">
 					 		{{sighting.author}}
 					 	</p>
-<button ng-click="viewSighting(sighting._sightingID)">view</button>
+						<button ng-click="viewSighting(sighting._sightingID)">view</button>
+						<hr>
+						<form ng-submit="writeComment(sighting._sightingID)" ng-show="isLoggedIn()">
+							<input type="text" class="form-control" placeholder="Description" ng-model="content"></input>
+						    <button type="submit">Add a comment</button>
+						  </form>		
 				 	</div>
 				</div>
 			</div>
