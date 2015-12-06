@@ -91,8 +91,8 @@
 						<button ng-click="viewSighting(sighting._sightingID)">view</button>
 						<hr>
 						<div ng-show="isLoggedIn()">
-							<input type="text" placeholder="Comment" ng-model="content"></input>
-							<button ng-click="writeComment(sighting._sightingID,content)">Add a comment</button>
+							<input type="text" placeholder="Comment" ng-model="sighting.comment"></input>
+							<button ng-click="writeComment(sighting)">Add a comment</button>
 						</div>	
 				 	</div>
 				</div>

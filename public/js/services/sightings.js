@@ -26,7 +26,6 @@ ufoApp.factory('sightings', ['$http', 'auth', function($http, auth){
 	};
 
 	obj.postComment = function(dataObj){
-		console.log("ok");
 		return $http.post('/comment', dataObj,
 			{headers: {Authorization: 
 				'Bearer '+ auth.getToken()

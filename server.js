@@ -34,8 +34,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 
 // routes (need to be added after DB setup)
+var queries = require('./models/queries.js');
 var routes = require('./routes/routes.js');
-routes(app);
+routes(app, queries);
 
 // launch 
 app.listen(port);

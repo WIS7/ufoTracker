@@ -1,13 +1,9 @@
 ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',  
 	function($scope,$state,sightings,auth){
+		$scope.main = {};
 		$scope.titlePage = "Post a new Sighting!";
 	    $scope.isLoggedIn = auth.isLoggedIn;
-		$scope.bool = false;
-		$scope.content = "";
-
-		$scope.hideShow = function() {
-			$scope.bool = !($scope.bool);
-		}
+		$scope.main.content = "";
 
 	    var setSightings = function(){
 		    sightings.getSightings().
@@ -83,7 +79,9 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',
 		}
 
 
-		$scope.writeComment = function(sightingID, content){
+		$scope.writeComment = function(sighting){
+			var sightingID = sighting._sightingID;
+			var content = sighting.comment;
 			if(!content || content === '') 
 			{return;}
 			var dataObj = {
@@ -94,7 +92,7 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',
 			sightings.postComment(dataObj).success(function(){
 				alert("New Comment added successfully");
 			});
-			$scope.content = '';
+			sighting.comment = '';
 		};
 
 		setSightings();

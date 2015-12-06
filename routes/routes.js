@@ -1,3 +1,4 @@
+// Package and other dependencies
 var mongoose = require('mongoose');
 var Sighting = mongoose.model('Sighting');
 var User = mongoose.model('User');
@@ -5,54 +6,34 @@ var Comment = mongoose.model('Comment');
 var passport = require('passport');
 var jwt = require('express-jwt');
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
-
-module.exports = function(app) {
+// Routes
+module.exports = function(app, queries) {
 
     app.get('/sighting', function(req, res, next){
         var _sightingID = req.query._sightingID;
-        Sighting.findOne({'_sightingID': _sightingID},function(err, sighting){
-            if(err){return next(err);}
-            res.json(sighting);
-         });
+        queries.getSighting(_sightingID, res, next);
     });
 
     app.get('/sightings', function(req, res, next){
-        // get all sightings from db
-        // todo aparte file die alle db queries
-        // gaat handelen
-        Sighting.find(function(err, sightings){
-            if(err){return next(err);}
-            res.json(sightings);
-         });
+        queries.getAllSightings(res, next);
     });
 
     app.post('/sightings', auth, function(req, res, next) {
-        // create new sighting and save it
         var form = req.body;
         form._sightingID = new mongoose.Types.ObjectId;
         var newSighting = new Sighting(form);
-        newSighting.save(function(err){
-            if(err){return next(err);}
-            res.send('POST request successful');
-        });
+        queries.saveSighting(newSighting, res, next);
     });
 
     app.get('/comments', function(req, res, next){
         var _sightingID = req.query._sightingID;
-        Comment.find({'_sightingID': _sightingID},function(err, sighting){
-            if(err){return next(err);}
-            res.json(sighting);
-         });
+        queries.getAllComments(_sightingID, res, next);
     });
 
     app.post('/comment', auth, function(req, res, next) {
         var form = req.body;
         var newComment = new Comment(form);
-        console.log(form);
-        newComment.save(function(err){
-            if(err){return next(err);}
-            res.send('POST request successful');
-        });
+        queries.saveComment(newComment, res, next);
     });
 
     app.post('/signup', function(req, res, next){
@@ -60,7 +41,6 @@ module.exports = function(app) {
             return res.status(400).json(
             {message: 'Please fill out all fields'});
         }
-        // todo check if user already exist (see passport)
         var user = new User();
         user.username = req.body.username;
         user.password = req.body.password;
