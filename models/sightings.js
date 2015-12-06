@@ -10,8 +10,8 @@ var sightingSchema = new mongoose.Schema({
     url: String,
     date: Date,
     coordinate: {
-    	longitude: Number,
-    	latitude: Number
+    	longitude: {type: Number, default: 4.3575},
+    	latitude: {type: Number, default: 50.7465}
     }
 });
 

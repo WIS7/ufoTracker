@@ -9,9 +9,18 @@
 		 	<p class="text-left lead list-group-item-text">
 		 		{{sighting.description}}
 		 	</p>
+			<p class="text-left list-group-item-text">
+				{{sighting.coordinate.latitude}}
+			</p>
+			<p class="text-left list-group-item-text">
+				{{sighting.coordinate.longitude}}
+			</p>
 		 	<p class="text-right list-group-item-text">
 			 	{{sighting.author}}
 		 	</p>
+			<div ng-controller="mapCtrl">
+				<div id="map_canvas" style="width: 400px; height: 500px;"></div>
+			</div>
 		</div>
 	</div>
 </div>
