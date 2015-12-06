@@ -5,7 +5,19 @@
 ufoApp.controller('searchCtrl',
     ['$scope', 'sightings',
         function($scope, sightings) {
-            sightings.getSightings($scope);
+            //$scope.sightings = sightings.getSightings();
+            var setSightings = function(){
+                sightings.getSightings().
+                success(function(response){
+                    $scope.sightings = response;
+                });
+            };
+
+            $scope.viewSighting = function(sightingID){
+                $state.go('sighting', {_sightingID: sightingID});
+            }
+
+            setSightings();
         }
     ]
 );
