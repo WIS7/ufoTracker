@@ -1,11 +1,7 @@
-/**
- * Created by Jannick on 3/12/15.
- */
-
 ufoApp.controller('searchCtrl',
-    ['$scope', 'sightings',
-        function($scope, sightings) {
-            //$scope.sightings = sightings.getSightings();
+    ['$scope', '$state', 'sightings',
+        function($scope, $state, sightings) {
+
             var setSightings = function(){
                 sightings.getSightings().
                 success(function(response){
@@ -15,7 +11,7 @@ ufoApp.controller('searchCtrl',
 
             $scope.viewSighting = function(sightingID){
                 $state.go('sighting', {_sightingID: sightingID});
-            }
+            };
 
             setSightings();
         }

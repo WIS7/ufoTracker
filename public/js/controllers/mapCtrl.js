@@ -1,7 +1,3 @@
-/**
- * Created by Jannick on 3/12/15.
- */
-
 ufoApp.controller('mapCtrl',
     ['$scope', '$stateParams', 'sightings',
         function($scope, $stateParams, sightings) {

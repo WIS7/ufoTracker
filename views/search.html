@@ -21,6 +21,8 @@
         <br>
         You selected <span class="bold-span">{{selectedSighting.originalObject.title}}</span> which has a sighting id <span class="bold-span">{{selectedSighting.originalObject._sightingID}}</span>
         <br>
-        <a href="/#/sighting/{{selectedSighting.originalObject._sightingID}}" class="btn btn-info" role="button">View Sighting</a>
+        <button class='btn btn-warning' ng-click="viewSighting(selectedSighting.originalObject._sightingID)">
+            View Sighting
+        </button>
     </div>
 </div>
