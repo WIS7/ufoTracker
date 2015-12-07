@@ -13,7 +13,7 @@
 			  <div class="modal-dialog">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <button type="button" ng-click="hideMap()" class="close" data-dismiss="modal">&times;</button>
 			        <h4 class="modal-title">Post a new Sighting!</h4>
 			      </div>
 			      <div class="modal-body">
@@ -59,15 +59,16 @@
 							</div>
 						</div>
 						<div>
-							<button class="btn btn-warning" type="button" ng-click="previewLocation()">Preview location</button>
+							<button class="btn btn-warning" type="button" ng-click="getMyLocation()">My Location</button>
+							<button class="btn btn-warning" type="button" ng-click="previewLocation()">Preview Address</button>
 							<button class="btn btn-warning" type="button" ng-click="addSighting()"data-dismiss="modal">New Sighting</button>
 						</div>
 						<br>
-			 			<div id="map_canvas" style="width: 400px; height: 500px;"></div>
+			 			<div id="map_canvas" ng-hide="mapsBoolean" style="width: 400px; height: 500px;"></div>
 					</form>      
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" ng-click="hideMap()" class="btn btn-default" data-dismiss="modal">Close</button>
 			      </div>
 			    </div>
 			</div>		

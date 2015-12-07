@@ -1,6 +1,7 @@
 ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',  
 	function($scope,$state,sightings,auth){
 		$scope.main = {};
+		$scope.mapsBoolean = true;
 		$scope.titlePage = "Post a new Sighting!";
 	    $scope.isLoggedIn = auth.isLoggedIn;
 		$scope.main.content = "";
@@ -10,7 +11,7 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',
 		    	success(function(response){
 	    			$scope.sightings = response;
 	    	});
-	    }
+	    };
 
 		$scope.addSighting = function(){
 			if(!$scope.title || $scope.title === '' || 
@@ -38,6 +39,24 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',
 			$scope.description = '';
 			$scope.longitude = '';
 			$scope.latitude ='';
+		};
+
+		$scope.getMyLocation = function() {
+			function showPosition(position) {
+				$scope.latitude = position.coords.latitude;
+				$scope.longitude = position.coords.longitude;
+				$scope.$digest();
+			}
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+			} else {
+				console.log("Error");
+			}
+
+		};
+
+		$scope.hideMap = function() {
+			$scope.mapsBoolean = true;
 		};
 
 		$scope.previewLocation = function() {
@@ -72,11 +91,12 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',
 					console.log(status);
 				}
 			});
+			$scope.mapsBoolean = false;
 		};
 
 		$scope.viewSighting = function(sightingID){
 			$state.go('sighting', {_sightingID: sightingID});
-		}
+		};
 
 
 		$scope.writeComment = function(sighting){
