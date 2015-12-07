@@ -15,6 +15,12 @@
 				<div id="map_canvas" style="width: 400px; height: 500px;"></div>
 			</div>
 			<hr>
+			<h4 class="text-center lead">Comment Section</h4>
+			<hr>
+			<div ng-show="isLoggedIn()">
+				<input type="text" placeholder="Comment" ng-model="comment"></input>
+				<button ng-click="writeComment()">Add a comment</button>
+			</div>
 			<div ng-repeat="comment in comments">
 				<div class="list-group">
 					<div class="list-group-item">
@@ -27,7 +33,7 @@
 					 	</p>	
 				 	</div>
 				</div>
-			</div>
+			</div>	
 		</div>
 	</div>
 </div>

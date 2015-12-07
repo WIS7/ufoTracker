@@ -1,8 +1,9 @@
 ufoApp.controller('sightingCtrl',
-	['$scope', '$stateParams', 'sightings', 
-	function($scope,$stateParams, sightings){
+	['$scope', '$stateParams', 'sightings', 'auth',
+	function($scope,$stateParams, sightings, auth){
 		var ID = $stateParams._sightingID;
 		$scope.ID = ID;
+		$scope.isLoggedIn = auth.isLoggedIn;
 	    var setSighting = function(){
 		    sightings.getOneSighting(ID).
 		    	success(function(response){
@@ -15,9 +16,25 @@ ufoApp.controller('sightingCtrl',
 	    			$scope.comments = response;
 	    	});
 	    }
+
+		$scope.writeComment = function(){
+			var sightingID = ID;
+			var content = $scope.comment;
+			if(!content || content === '') 
+			{return;}
+			var dataObj = {
+			  	content: content,
+			  	author: auth.currentUser(),
+			  	_sightingID: sightingID
+			};
+			sightings.postComment(dataObj).success(function(){
+				alert("New Comment added successfully");
+			});
+			$scope.comment = '';
+			setComments();
+		};
+
 	    setSighting();
 	    setComments();
 	}
-	// id: 2866ad00a8356af
-	// secret: 43b2c8e3004865bb36639eea701a03cb65c5a88a
 ]);
