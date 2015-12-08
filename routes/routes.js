@@ -41,12 +41,21 @@ module.exports = function(app, queries) {
             return res.status(400).json(
             {message: 'Please fill out all fields'});
         }
-        var user = new User();
-        user.username = req.body.username;
-        user.password = req.body.password;
-        user.save(function (err){
-            if(err){return next(err);}
-            return res.json({token: user.generateJWT()})
+
+        User.findOne({'username' :  req.body.username}, function(err, user){
+            if(user){
+                return res.status(400).json(
+                {message: 'Username already taken'});
+            }
+            else {
+                var user = new User();
+                user.username = req.body.username;
+                user.password = req.body.password;
+                user.save(function (err){
+                    if(err){return next(err);}
+                    return res.json({token: user.generateJWT()})
+                });
+            }
         });
     });
  
