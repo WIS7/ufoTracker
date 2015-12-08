@@ -15,11 +15,9 @@ var userSchema = new mongoose.Schema({
 
 userSchema.methods.generateJWT = function() {
 
-  // Yousef gonna change this to 24hours
-  // set expiration to 60 days
   var today = new Date();
   var exp = new Date(today);
-  exp.setDate(today.getDate() + 60);
+  exp.setDate(today.getDate() + 1);
 
   return jwt.sign({
     id: this.id,
