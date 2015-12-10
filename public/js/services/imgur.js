@@ -34,6 +34,25 @@ ufoApp.factory('imgur', ["$q", "$http", function($q, $http) {
                     deferred.reject(error);
                 });
             return deferred.promise;
+        },
+        uploadImage: function(params) {
+            var deferred = $q.defer();
+            var endPoint = this.api + "/image";
+            $http({
+                method: "POST",
+                url: endPoint,
+                headers: {
+                    "Authorization": "Client-ID " + this.client_id
+                },
+                params: params
+            })
+                .success(function(result) {
+                    deferred.resolve(result);
+                })
+                .error(function(error) {
+                    deferred.reject(error);
+                });
+            return deferred.promise;
         }
     };
 
