@@ -1,5 +1,5 @@
-ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',  
-	function($scope,$state,sightings,auth){
+ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth', 'imgur',
+	function($scope,$state,sightings,auth, imgur){
 		$scope.main = {};
 		$scope.mapsBoolean = true;
 		$scope.titlePage = "Post a new Sighting!";
@@ -22,6 +22,7 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',
 			var dataObj = {
 			  	title: $scope.title,
 			  	description: $scope.description,
+				url: $scope.url,
 				coordinate: {
 					longitude: $scope.longitude,
 					latitude: $scope.latitude
@@ -39,6 +40,30 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth',
 			$scope.description = '';
 			$scope.longitude = '';
 			$scope.latitude ='';
+		};
+
+		$scope.files = [];
+		$scope.imageBase64 = '';
+
+		$scope.uploadImage = function() {
+			if ($scope.imageBase64 === '') {
+				return
+			}
+			var imgurStuff = new imgur('09da5770eeb1e29');
+
+			myParams = {
+				image: $scope.imageBase64
+			};
+			imgurStuff.uploadImage(myParams).then(function(result) {
+				$scope.url = result.data.link;
+				console.log(result.data.link)
+			}, function(error) {
+				console.error(error);
+			});
+		};
+
+		$scope.onLoad = function (e, reader, file, fileList, fileObjects, fileObj) {
+			console.log(fileObj);
 		};
 
 		$scope.getMyLocation = function() {
