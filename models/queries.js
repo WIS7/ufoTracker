@@ -5,13 +5,20 @@ var Comment = mongoose.model('Comment');
 
 module.exports = {
 
-	getSighting: function(_sightingID, res, next){
-		var obj = {'_sightingID': _sightingID};
-		Sighting.findOne(obj, function(err, sighting){
-	        if(err){return next(err);}
-	        return res.json(sighting);
-	    });
-	},
+    getSighting: function(_sightingID, res, next){
+        var obj = {'_sightingID': _sightingID};
+        Sighting.findOne(obj, function(err, sighting){
+            if(err){return next(err);}
+            return res.json(sighting);
+        });
+    },
+    getUserSightings: function(author, res, next){
+        var obj = {'author': author};
+        Sighting.find(obj, function(err, sightings){
+            if(err){return next(err);}
+            return res.json(sightings);
+        });
+    },
 	getAllSightings: function(res, next){
         Sighting.find(function(err, sightings){
             if(err){return next(err);}
