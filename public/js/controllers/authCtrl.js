@@ -18,4 +18,4 @@ ufoApp.controller('authCtrl',
         $state.go('sightings');
       });
     };
-}])
+}]);

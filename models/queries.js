@@ -36,4 +36,4 @@ module.exports = {
             res.send('POST request successful');
         });
 	}
-}
+};

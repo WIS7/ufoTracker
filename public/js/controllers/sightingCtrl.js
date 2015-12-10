@@ -9,13 +9,13 @@ ufoApp.controller('sightingCtrl',
 		    	success(function(response){
 	    			$scope.sighting = response;
 	    	});
-	    }
+	    };
 	    var setComments = function(){
 		    sightings.getComments(ID).
 		    	success(function(response){
 	    			$scope.comments = response;
 	    	});
-	    }
+	    };
 
 		$scope.writeComment = function(){
 			var sightingID = ID;

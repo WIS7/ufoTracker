@@ -8,7 +8,7 @@ ufoApp.factory('auth',
 
 	auth.getToken = function (){
 		return $window.localStorage['ufo-token'];
-	}
+	};
 
 	auth.isLoggedIn = function(){
 		var token = auth.getToken();
@@ -48,4 +48,4 @@ ufoApp.factory('auth',
 	};
 	
 	return auth;
-}])
+}]);
