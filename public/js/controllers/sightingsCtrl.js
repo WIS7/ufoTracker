@@ -15,13 +15,15 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth', 'imgu
 
 		$scope.addSighting = function(){
 			if(!$scope.title || $scope.title === '' || 
-				!$scope.description || $scope.description === '') 
+				!$scope.description || $scope.description === '' ||
+				!$scope.date || $scope.date === '') 
 			{ 	
 				return;
 			}
 			var dataObj = {
 			  	title: $scope.title,
 			  	description: $scope.description,
+			  	date: $scope.date,
 				url: $scope.url,
 				coordinate: {
 					longitude: $scope.longitude,
@@ -38,6 +40,7 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth', 'imgu
 
 			$scope.title = '';
 			$scope.description = '';
+			$scope.date ='';
 			$scope.longitude = '';
 			$scope.latitude ='';
 		};
