@@ -35,6 +35,10 @@ module.exports = function(app, queries) {
         queries.getAllSightings(res, next);
     });
 
+    app.get('/users', function(req, res, next) {
+        queries.getAllUsers(res, next);
+    });
+
     app.post('/sightings', auth, function(req, res, next) {
         var form = req.body;
         form._sightingID = new mongoose.Types.ObjectId;
