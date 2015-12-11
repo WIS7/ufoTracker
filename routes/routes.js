@@ -23,6 +23,13 @@ module.exports = function(app, queries) {
         var _sightingID = req.query._sightingID;
         queries.deleteSighting(_sightingID, res, next);
     });
+    //-------------------------------------------------------- 
+
+    app.put('/user/sightings', function(req, res, next){
+        var sighting = req.body;
+        queries.editSighting(sighting, res, next);
+    });
+    //-------------------------------------------------------- 
 
     app.get('/sightings', function(req, res, next){
         queries.getAllSightings(res, next);

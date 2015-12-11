@@ -18,5 +18,13 @@ ufoApp.controller('profileCtrl', ['$scope','auth', 'sightings',
 		    setSightings(username);
 	    };
 
+	    $scope.editSighting = function(sighting){
+		    sightings.editUserSighting(sighting).
+		    	success(function(){
+	    			alert("Sighting edited");
+	    	});
+		    setSightings(username);
+	    };
+
 	    setSightings(username);
 }]);

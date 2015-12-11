@@ -19,6 +19,13 @@ module.exports = {
             res.send('DELETE request successful');
         });
     },
+
+//---------------------------------------------------
+    editSighting: function(sighting, res, next){
+   
+    },
+//---------------------------------------------------
+
     getUserSightings: function(author, res, next){
         var obj = {'author': author};
         Sighting.find(obj, function(err, sightings){
