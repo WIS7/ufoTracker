@@ -33,7 +33,7 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth', 'imgu
 			};
 
 			sightings.postSighting(dataObj).success(function(){
-					alert("New Sighting added successfully");
+					//alert("New Sighting added successfully");
 			});
  
 			setSightings();  
@@ -125,24 +125,6 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth', 'imgu
 		$scope.viewSighting = function(sightingID){
 			$state.go('sighting', {_sightingID: sightingID});
 		};
-
-
-		$scope.writeComment = function(sighting){
-			var sightingID = sighting._sightingID;
-			var content = sighting.comment;
-			if(!content || content === '') 
-			{return;}
-			var dataObj = {
-			  	content: content,
-			  	author: auth.currentUser(),
-			  	_sightingID: sightingID
-			};
-			sightings.postComment(dataObj).success(function(){
-				alert("New Comment added successfully");
-			});
-			sighting.comment = '';
-		};
-
 		setSightings();
 	}
 ]);

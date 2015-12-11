@@ -28,7 +28,7 @@ ufoApp.controller('sightingCtrl',
 			  	_sightingID: sightingID
 			};
 			sightings.postComment(dataObj).success(function(){
-				alert("New Comment added successfully");
+				//alert("New Comment added successfully");
 			});
 			$scope.comment = '';
 			setComments();

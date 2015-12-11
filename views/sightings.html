@@ -101,12 +101,7 @@
 					 	<p class="text-right list-group-item-text">
 					 		{{sighting.author}}
 					 	</p>
-						<button ng-click="viewSighting(sighting._sightingID)">view</button>
-						<hr>
-						<div ng-show="isLoggedIn()">
-							<input type="text" placeholder="Comment" ng-model="sighting.comment"></input>
-							<button ng-click="writeComment(sighting)">Add a comment</button>
-						</div>	
+						<button type="button" class="btn btn-default" ng-click="viewSighting(sighting._sightingID)">view</button>
 				 	</div>
 				</div>
 			</div>
