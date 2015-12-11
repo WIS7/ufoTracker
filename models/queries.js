@@ -12,6 +12,13 @@ module.exports = {
             return res.json(sighting);
         });
     },
+    deleteSighting: function(_sightingID, res, next){
+        var obj = {'_sightingID': _sightingID};
+        Sighting.remove(obj, function(err){
+            if(err){return next(err);}
+            res.send('DELETE request successful');
+        });
+    },
     getUserSightings: function(author, res, next){
         var obj = {'author': author};
         Sighting.find(obj, function(err, sightings){

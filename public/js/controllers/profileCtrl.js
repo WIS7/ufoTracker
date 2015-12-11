@@ -10,11 +10,13 @@ ufoApp.controller('profileCtrl', ['$scope','auth', 'sightings',
 	    	});
 	    };		
 
-	    var deleteSighting = function(sightingID){
-		    sightings.deleteSighting(sightingID).
+	    $scope.deleteSighting = function(sightingID){
+		    sightings.deleteUserSighting(sightingID).
 		    	success(function(){
 	    			alert("Sighting deleted");
 	    	});
+		    setSightings(username);
 	    };
+
 	    setSightings(username);
 }]);

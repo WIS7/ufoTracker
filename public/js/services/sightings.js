@@ -18,6 +18,13 @@ ufoApp.factory('sightings', ['$http', 'auth', function($http, auth){
 			});
 	};
 
+	obj.deleteUserSighting = function(sightingID){
+		return $http.delete('/user/sightings/', { 
+			params:
+				{"_sightingID": sightingID}
+			});
+	};
+
 	obj.getSightings = function(){
 		return $http.get('/sightings');
 	};
