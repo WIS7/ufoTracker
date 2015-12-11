@@ -101,7 +101,13 @@
 	</div>
 </div>
 <!-- Modal Edit Sighting-->
-<div id="ModalEditSighting" class="modal fade" role="dialog">
+
+		<!-- -->
+		<h1 class="text-center">Your sightings</h1>
+		<hr>
+		<div ng-repeat="sighting in sightings">
+		
+		<div id="ModalEditSighting" class="modal fade" role="dialog">
 			  <div class="modal-dialog">
 			    <div class="modal-content">
 			      <div class="modal-header">
@@ -115,18 +121,16 @@
 			 					Title
 			 				</label>
 			 				<div class="col-sm-10">
-								<input type="text" class="form-control" placeholder="Title" ng-model="title" ></input>
+								<input type="text" class="form-control" placeholder="{{sighting.title}}" ng-model="title" ></input>
 							</div>
 							
-							<!--<div class="col-sm-10" contentEditable="true" ng-model="content" title="Click to edit">Roberto</div>-->	
-			 				
 			 			</div>	
 						<div class="form-group">
 			 				<label class="col-sm-2 control-label">
 			 					Description
 			 				</label>
 			 				<div class="col-sm-10">
-								<input type="text" class="form-control" placeholder="Description" ng-model="description"></input>
+								<input type="text" class="form-control" placeholder="{{sighting.description}}" ng-model="description"></input>
 			 				</div>
 			 			</div>
 						<div class="form-group">
@@ -134,7 +138,7 @@
 			 					Date
 			 				</label>
 			 				<div class="col-sm-10">
-								<input type="text" class="form-control" placeholder="Date" ng-model="date"></input>
+								<input type="text" class="form-control" placeholder="{{sighting.date}}" ng-model="date"></input>
 			 				</div>
 			 			</div>
 						
@@ -143,7 +147,7 @@
 								Location (latitude)
 							</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" placeholder="Location (latitude)" ng-model="latitude"></input>
+								<input type="text" class="form-control" placeholder="{{sighting.latitude}}" ng-model="latitude"></input>
 							</div>
 						</div>
 						<div class="form-group">
@@ -151,7 +155,7 @@
 								Location (longitude)
 							</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" placeholder="Location (longitude)" ng-model="longitude"></input>
+								<input type="text" class="form-control" placeholder="{{sighting.longitude}}" ng-model="longitude"></input>
 							</div>
 						</div>
 						<div class="form-group">
@@ -159,7 +163,7 @@
 								Location (address)
 							</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" placeholder="Location (address)" ng-model="address"></input>
+								<input type="text" class="form-control" placeholder="{{sighting.address}}" ng-model="address"></input>
 							</div>
 						</div>
 						<div>
@@ -172,17 +176,14 @@
 					</form>      
 			      </div>
 			      <div class="modal-footer">
-					  <button class="btn btn-info" type="button" ng-click="editSighting()"data-dismiss="modal">Edit Sighting</button>
+					  <button class="btn btn-info" type="button" ng-click="editSighting(sighting._sighting)"data-dismiss="modal">Edit Sighting</button>
 			        <button type="button" ng-click="hideMap()" class="btn btn-default" data-dismiss="modal">Close</button>
 			      </div>
 			    </div>
 			</div>		
 		</div>
-		<!-- -->
-		<h1 class="text-center">Your sightings</h1>
-		<hr>
-		<div ng-repeat="sighting in sightings">
-			<div class="list-group">
+		
+			<div class="list-group">				
 				<div class="list-group-item">
 				 	<h4 class="text-center lead list-group-item-heading">
 					 		{{sighting.title}}
@@ -194,8 +195,7 @@
 				 	<p class="text-right list-group-item-text">
 					 		{{sighting.author}}
 				 	</p>
-				 	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalEditSighting">Edit</button>	
-				 	<!-- <button class="btn btn-info" type="button" ng-click="editSighting()"data-dismiss="modal">Edit</button>-->
+				 	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalEditSighting">Edit</button>					 	
 				 	<button class="btn btn-danger" ng-click="deleteSighting(sighting._sightingID)">Delete</button>	
 			 	</div>
 			</div>
