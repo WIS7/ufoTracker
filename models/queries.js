@@ -20,13 +20,28 @@ module.exports = {
             res.send('DELETE request successful');
         });
     },
-
 //---------------------------------------------------
     editSighting: function(sighting, res, next){
-   
+        var  _sightingID = sighting._sightingID;
+        var title = sighting.title;
+        var description = sighting.description;
+        var date = sighting.date;
+        Sighting.update(
+            { "_sightingID": _sightingID},
+                {"$set": 
+                    {
+                    "title": title,
+                    "description": description,
+                    "date": date
+                    }
+                },
+            function(err) {
+                if(err){return next(err);}
+                res.send('EDIT request successful'); 
+            }
+        );      
     },
 //---------------------------------------------------
-
     getUserSightings: function(author, res, next){
         var obj = {'author': author};
         Sighting.find(obj, function(err, sightings){

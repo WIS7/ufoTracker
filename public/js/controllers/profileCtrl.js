@@ -1,6 +1,8 @@
 ufoApp.controller('profileCtrl', ['$scope','auth', 'sightings',
 	function($scope, auth, sightings){
 		$scope.currentUser = auth.currentUser;
+		$scope.sighting = {};
+		
 		var username = auth.currentUser();
 		
 	    var setSightings = function(username){
@@ -18,7 +20,12 @@ ufoApp.controller('profileCtrl', ['$scope','auth', 'sightings',
 		    setSightings(username);
 	    };
 
+	    $scope.getSighting = function(sighting){
+			$scope.sighting = sighting;
+	    };
+
 	    $scope.editSighting = function(sighting){
+	    	
 		    sightings.editUserSighting(sighting).
 		    	success(function(){
 	    			alert("Sighting edited");

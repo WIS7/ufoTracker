@@ -25,8 +25,8 @@ ufoApp.factory('sightings', ['$http', 'auth', function($http, auth){
 			});
 	};
 
-	obj.editUserSighting = function(dataObj){
-		return $http.post('/user/sightings/', dataObj,
+	obj.editUserSighting = function(sighting){
+		return $http.put('/user/sightings', sighting,
 			{headers: {Authorization: 
 				'Bearer '+ auth.getToken()
 				}
