@@ -18,11 +18,13 @@ ufoApp.factory('sightings', ['$http', 'auth', function($http, auth){
 			});
 	};
 
-	obj.deleteUserSighting = function(sightingID){
-		return $http.delete('/user/sightings/', { 
-			params:
-				{"_sightingID": sightingID}
-			});
+	obj.deleteUserSighting = function(sighting){
+		return $http({  
+	        method: "DELETE",  
+	        url: '/user/sightings',  
+	        data: sighting,  
+	        headers: {'Content-Type': 'application/json', Authorization: "Bearer " + auth.getToken() }  
+		});
 	};
 
 	obj.editUserSighting = function(sighting){
@@ -38,8 +40,8 @@ ufoApp.factory('sightings', ['$http', 'auth', function($http, auth){
 		return $http.get('/sightings');
 	};
 
-	obj.postSighting = function(dataObj){
-		return $http.post('/sightings', dataObj,
+	obj.postSighting = function(sighting){
+		return $http.post('/sightings', sighting,
 			{headers: {Authorization: 
 				'Bearer '+ auth.getToken()
 				}
@@ -47,8 +49,8 @@ ufoApp.factory('sightings', ['$http', 'auth', function($http, auth){
    		);
 	};
 
-	obj.postComment = function(dataObj){
-		return $http.post('/comment', dataObj,
+	obj.postComment = function(comment){
+		return $http.post('/comment', comment,
 			{headers: {Authorization: 
 				'Bearer '+ auth.getToken()
 				}

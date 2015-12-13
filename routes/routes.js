@@ -19,8 +19,8 @@ module.exports = function(app, queries) {
         queries.getUserSightings(author, res, next);
     });
 
-    app.delete('/user/sightings', function(req, res, next){
-        var _sightingID = req.query._sightingID;
+    app.delete('/user/sightings', auth, function(req, res, next){
+        var _sightingID = req.body._sightingID;
         queries.deleteSighting(_sightingID, res, next);
     });
     

@@ -33,7 +33,7 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 			};
 
 			sightings.postSighting(dataObj).success(function(){
-				alert("New Sighting added successfully");
+				//alert("New Sighting added successfully");
 			});
  
 			setSightings();  
