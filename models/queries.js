@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 var Sighting = mongoose.model('Sighting');
 var Comment = mongoose.model('Comment');
+var User = mongoose.model('User');
 
 module.exports = {
 
@@ -32,6 +33,16 @@ module.exports = {
             if(err){return next(err);}
             return res.json(sightings);
         });
+    },
+    getAllUsers: function(res, next) {
+        var query = User.find();
+        query.select('username');
+        query.exec(function(err, users) {
+            if (err) {
+                return next(err)
+            }
+            res.json(users)
+        })
     },
 	getAllSightings: function(res, next){
         Sighting.find(function(err, sightings){

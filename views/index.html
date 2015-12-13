@@ -26,13 +26,16 @@
         <script src="js/controllers/profileCtrl.js"></script>
         <script src="js/controllers/searchCtrl.js"></script>
         <script src="js/controllers/mapCtrl.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     </head>
     <body ng-app="ufoApp">
         <!-- NAVIGATION -->
         <div ng-include="'nav.html'"></div>
-        <!-- MAIN CONTENT -->
         <div class="container">
-            <div ui-view></div>
+            <div class="col-xs-12">
+                <!-- MAIN CONTENT -->
+                <div ui-view></div>
+            </div>
         </div>
     </body>
 </html>
