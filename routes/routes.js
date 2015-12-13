@@ -26,7 +26,6 @@ module.exports = function(app, queries) {
     
     app.put('/user/sightings', auth, function(req, res, next){
         var sighting = req.body;
-        console.log(sighting);
         queries.editSighting(sighting, res, next);
     });
 
