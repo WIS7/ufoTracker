@@ -28,9 +28,9 @@ ufoApp.controller('mapCtrl',
 
                     // Resize stuff...
                     google.maps.event.addDomListener(window, "resize", function() {
-                        var center = map.getCenter();
-                        google.maps.event.trigger(map, "resize");
-                        map.setCenter(center);
+                        var center = $scope.map.getCenter();
+                        google.maps.event.trigger($scope.map, "resize");
+                        $scope.map.setCenter(center);
                     });
                 });
             };

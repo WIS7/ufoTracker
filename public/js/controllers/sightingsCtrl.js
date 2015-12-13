@@ -1,5 +1,5 @@
-ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth', 'imgur',
-	function($scope,$state,sightings,auth, imgur){
+ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','auth', 'imgurUpload',
+	function($scope,$state,$timeout,sightings,auth,imgurUpload){
 		$scope.main = {};
 		$scope.mapsBoolean = true;
 		$scope.titlePage = "Post a new Sighting!";
@@ -33,7 +33,7 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth', 'imgu
 			};
 
 			sightings.postSighting(dataObj).success(function(){
-					//alert("New Sighting added successfully");
+				alert("New Sighting added successfully");
 			});
  
 			setSightings();  
@@ -45,28 +45,39 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', 'sightings','auth', 'imgu
 			$scope.latitude ='';
 		};
 
-		$scope.files = [];
-		$scope.imageBase64 = '';
+		$scope.uploadProgress = 0;
 
-		$scope.uploadImage = function() {
-			if ($scope.imageBase64 === '') {
-				return
-			}
-			var imgurStuff = new imgur('09da5770eeb1e29');
-
-			myParams = {
-				image: $scope.imageBase64
+		$scope.upload = function(element) {
+			// What to do when the upload was successful?
+			var success = function(result) {
+				$scope.sending = false;
+				$scope.result = result;
+				$scope.url = result.data.link
 			};
-			imgurStuff.uploadImage(myParams).then(function(result) {
-				$scope.url = result.data.link;
-				console.log(result.data.link)
-			}, function(error) {
-				console.error(error);
-			});
-		};
+			// What to do when the upload was a failure?
+			var error = function(error) {
+				$scope.sending = false;
+				$scope.error = error
+			};
+			// What to do while uploading?
+			var notify = function(progress) {
+				$timeout(function() {
+					$scope.progress = progress
+				})
+			};
+			// Initialise $scope variables
+			$scope.sending = true;
+			$scope.error = false;
 
-		$scope.onLoad = function (e, reader, file, fileList, fileObjects, fileObj) {
-			console.log(fileObj);
+			// Initialise other variables
+			var image = element.files[0];
+			var clientID = '09da5770eeb1e29';
+
+			imgurUpload.setClientId(clientID);
+			imgurUpload
+					.upload(image)
+					.then(success, error, notify)
+
 		};
 
 		$scope.getMyLocation = function() {
