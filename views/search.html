@@ -1,32 +1,47 @@
-<div class="page-header">
-    <h1>Search for UFO Sightings</h1>
-</div>
-
-<div class="padded-row">
-    <div angucomplete-alt id="searchSighting"
-         placeholder="Search for a specific sighting"
-         maxlength="50"
-         pause="100"
-         selected-object="selectedSighting"
-         local-data=sightings
-         search-fields="title,author,date"
-         title-field="title"
-         description-field="date"
-         minlength="1"
-         input-class="form-control form-control-small"
-         clear-selected="true"
-         match-class="highlight">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-header">
+                <h1>Search for UFO Sightings</h1>
+            </div>
+        </div>
     </div>
 </div>
-<div class="result">
-    <div ng-show="selectedSighting">
-        <br>
-        You selected <span class="bold-span">{{selectedSighting.originalObject.title}}</span> which was posted by
-        <span class="bold-span">{{selectedSighting.originalObject.author}}</span> on <span class="bold-span">{{selectedSighting.originalObject.date}}</span>
-        <br>
-        <br>
-        <button class='btn btn-warning' ng-click="viewSighting(selectedSighting.originalObject._sightingID)">
-            View Sighting
-        </button>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div angucomplete-alt id="searchSighting"
+                 placeholder="Search for a specific sighting"
+                 maxlength="50"
+                 pause="100"
+                 selected-object="selectedSighting"
+                 local-data=sightings
+                 search-fields="title,author,date"
+                 title-field="title"
+                 description-field="date"
+                 minlength="1"
+                 input-class="form-control form-control-small"
+                 clear-selected="true"
+                 match-class="highlight">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div ng-show="selectedSighting">
+                <br>
+                You selected <span class="bold-span">{{selectedSighting.originalObject.title}}</span> which was posted by
+                <span class="bold-span">{{selectedSighting.originalObject.author}}</span> on <span class="bold-span">{{selectedSighting.originalObject.date}}</span>
+                <br>
+                <br>
+                <button class='btn btn-warning' ng-click="viewSighting(selectedSighting.originalObject._sightingID)">
+                    View Sighting
+                </button>
+            </div>
+        </div>
     </div>
 </div>
