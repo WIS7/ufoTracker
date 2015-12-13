@@ -9,17 +9,21 @@
          pause="100"
          selected-object="selectedSighting"
          local-data=sightings
-         search-fields="title"
+         search-fields="title,author,date"
          title-field="title"
+         description-field="date"
          minlength="1"
          input-class="form-control form-control-small"
+         clear-selected="true"
          match-class="highlight">
     </div>
 </div>
 <div class="result">
     <div ng-show="selectedSighting">
         <br>
-        You selected <span class="bold-span">{{selectedSighting.originalObject.title}}</span> which has a sighting id <span class="bold-span">{{selectedSighting.originalObject._sightingID}}</span>
+        You selected <span class="bold-span">{{selectedSighting.originalObject.title}}</span> which was posted by
+        <span class="bold-span">{{selectedSighting.originalObject.author}}</span> on <span class="bold-span">{{selectedSighting.originalObject.date}}</span>
+        <br>
         <br>
         <button class='btn btn-warning' ng-click="viewSighting(selectedSighting.originalObject._sightingID)">
             View Sighting
