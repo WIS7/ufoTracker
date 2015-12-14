@@ -4,6 +4,8 @@
   tr { text-align: center}
  </STYLE>
 
+<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">Ask Question
+				</button>
 
 <table style="width:100%">
     <tr>
@@ -32,5 +34,54 @@
     <td>Description</td>
   </tr>
 </table>
+
+			<div id="myModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" ng-click="hideMap()" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Ask a Question !</h4>
+			      </div>
+			      <div class="modal-body">
+					<form class="form-horizontal">
+			 			<div class="form-group">
+			 				<label class="col-sm-2 control-label">
+			 					Name
+			 				</label>
+			 				<div class="col-sm-10">
+								<input type="text" class="form-control" ng-model="user.firstName">
+			 				</div>
+			 			</div>	
+						
+						<div class="form-group">
+							<label class="col-sm-2 control-label">
+								Email
+							</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" ng-model="user.email">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-sm-2 control-label">
+								Comment
+							</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" ng-model="user.email">
+							</div>
+						</div>
+					
+						<br>
+			 			
+					</form>      
+			      </div>
+			      <div class="modal-footer">
+					  <button class="btn btn-info" type="button" ng-click="esenMail()"data-dismiss="modal">Send</button>
+			        <button type="button" ng-click="hideMap()" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			</div>		
+		</div>
+
 
 </div>
