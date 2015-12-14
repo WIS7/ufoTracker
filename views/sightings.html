@@ -1,125 +1,141 @@
 <div class="container">
-	<div class="row col-sm-12">
-		<!-- <h1>{{titlePage}}</h1> -->
-		<div ng-hide="isLoggedIn()">
-			<h4>You need to <a ui-sref="login">Log In</a> or <a ui-sref="signup">Sign up</a> before you can add a new sightings.</h4>
-		</div>
-			<!-- Trigger the modal with a button -->
-			<button ng-show="isLoggedIn()" type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">
-				Post a new Sighting!
-			</button>
-			<!-- Modal -->
-			<div id="myModal" class="modal fade" role="dialog">
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" ng-click="hideMap()" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">Post a new Sighting!</h4>
-			      </div>
-			      <div class="modal-body">
-					  <form class="form-horizontal" data-toggle="validator">
-						<!-- Title of Sighting -->
-			 			<div class="form-group">
-							<label for="sightingTitle" class="col-sm-2 control-label">Title</label>
-			 				<div class="col-sm-10">
-								<input type="text" id="sightingTitle" class="form-control" placeholder="Title"
-									   ng-model="title" required>
-								<div class="help-block with-errors"></div>
-			 				</div>
-			 			</div>
-						<!-- Description of Sighting -->
-						<div class="form-group">
-							<label for="sightingDescription" class="col-sm-2 control-label">Description</label>
-			 				<div class="col-sm-10">
-								<input type="text" id="sightingDescription" class="form-control"
-									   placeholder="Description" ng-model="description" required>
-								<div class="help-block with-errors"></div>
-			 				</div>
-			 			</div>
-						<!-- Date of Sighting -->
-						<div class="form-group">
-							<label for="sightingDate" class="col-sm-2 control-label">Date</label>
-			 				<div class="col-sm-10">
-								<input type="text" id="sightingDate" class="form-control" placeholder="Date"
-									   ng-model="date" required>
-								<div class="help-block with-errors"></div>
-			 				</div>
-			 			</div>
-						<!-- Uploading of an image -->
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Upload image</label>
-							<div class="col-sm-10">
-								<input type="file" onchange="angular.element(this).scope().upload(this)" accept="image/*" />
-							</div>
-							<br>
-							<div ng-if="sending" class="col-sm-12 progress">
-								<div class="progress-bar progress-bar-striped active" role="progressbar"
-									 aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
-									{{progress}}
-								</div>
-							</div>
-							<div ng-if="!sending && result" class="col-sm-12">
-								<img ng-src="{{result.data.link}}" class="img-responsive">
-							</div>
-						</div>
-						<!-- Location -->
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Location (latitude)</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" placeholder="Location (latitude)" ng-model="latitude">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Location (longitude)</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" placeholder="Location (longitude)" ng-model="longitude">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Location (address)</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" placeholder="Location (address)" ng-model="address">
-							</div>
-						</div>
-						<div>
-							<button class="btn btn-warning" type="button" ng-click="getMyLocation()">My Location</button>
-							<button class="btn btn-warning" type="button" ng-click="previewLocation()">Preview Address</button>
-						</div>
-						<br>
-						<div class="form-group">
-							<div class="col-sm-12">
-								<div id="map_canvas" ng-hide="mapsBoolean" style="width: 100%; height: 200px;"></div>
-							</div>
-						</div>
-					</form>      
-			      </div>
-			      <div class="modal-footer">
-					  <button class="btn btn-info" type="button" ng-click="addSighting()" data-dismiss="modal">New Sighting</button>
-			        <button type="button" ng-click="hideMap()" class="btn btn-default" data-dismiss="modal">Close</button>
-			      </div>
-			    </div>
-			</div>		
-		</div>
-		<section>
-			<h1 class="text-center">Interesting new Sightings</h1>
-			<hr>
-			<div ng-repeat="sighting in sightings|limitTo:5">
-				<div class="list-group">
-					<div class="list-group-item">
-					 	<h4 class="text-center lead list-group-item-heading">
-					 		{{sighting.title}}
-					 	</h4>
-					 	<hr>
-					 	<p class="text-left lead list-group-item-text">
-					 		{{sighting.description}}
-					 	</p>
-					 	<p class="text-right list-group-item-text">
-					 		{{sighting.author}}
-					 	</p>
-						<button type="button" class="btn btn-default" ng-click="viewSighting(sighting._sightingID)">view</button>
-				 	</div>
-				</div>
-			</div>
-		</section>
-	</div>
+    <div class="row col-sm-12">
+        <!-- <h1>{{titlePage}}</h1> -->
+        <div ng-hide="isLoggedIn()">
+            <h4>You need to <a ui-sref="login">Log In</a> or <a ui-sref="signup">Sign up</a> before you can add a new
+                sightings.</h4>
+        </div>
+        <!-- Trigger the modal with a button -->
+        <button ng-show="isLoggedIn()" type="button" class="btn btn-warning btn-lg" data-toggle="modal"
+                data-target="#myModal">
+            Post a new Sighting!
+        </button>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" ng-click="hideMap()" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Post a new Sighting!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" data-toggle="validator">
+                            <!-- Title of Sighting -->
+                            <div class="form-group">
+                                <label for="sightingTitle" class="col-sm-2 control-label">Title</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="sightingTitle" class="form-control" placeholder="Title"
+                                           ng-model="title" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <!-- Description of Sighting -->
+                            <div class="form-group">
+                                <label for="sightingDescription" class="col-sm-2 control-label">Description</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="sightingDescription" class="form-control"
+                                           placeholder="Description" ng-model="description" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <!-- Date of Sighting -->
+                            <div class="form-group">
+                                <label for="sightingDate" class="col-sm-2 control-label">Date</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="sightingDate" class="form-control" placeholder="Date"
+                                           ng-model="date" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <!-- Uploading of an image -->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Upload image</label>
+                                <div class="col-sm-10">
+                                    <input type="file" onchange="angular.element(this).scope().upload(this)"
+                                           accept="image/*"/>
+                                </div>
+                                <br>
+                                <div ng-if="sending" class="col-sm-12 progress">
+                                    <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                         aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100"
+                                         style="width: {{progress}}%;">
+                                        {{progress}}
+                                    </div>
+                                </div>
+                                <div ng-if="!sending && result" class="col-sm-12">
+                                    <img ng-src="{{result.data.link}}" class="img-responsive">
+                                </div>
+                            </div>
+                            <!-- Location -->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Location (latitude)</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="Location (latitude)"
+                                           ng-model="latitude">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Location (longitude)</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="Location (longitude)"
+                                           ng-model="longitude">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Location (address)</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="Location (address)"
+                                           ng-model="address">
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-warning" type="button" ng-click="getMyLocation()">My Location
+                                </button>
+                                <button class="btn btn-warning" type="button" ng-click="previewLocation()">Preview
+                                    Address
+                                </button>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div id="map_canvas" ng-hide="mapsBoolean"
+                                         style="width: 100%; height: 200px;"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-info" type="button" ng-click="addSighting()" data-dismiss="modal">New
+                            Sighting
+                        </button>
+                        <button type="button" ng-click="hideMap()" class="btn btn-default" data-dismiss="modal">Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section>
+            <h1 class="text-center">Interesting new Sightings</h1>
+            <hr>
+            <div ng-repeat="sighting in sightings|limitTo:5">
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <h4 class="text-center lead list-group-item-heading">
+                            {{sighting.title}}
+                        </h4>
+                        <hr>
+                        <p class="text-left lead list-group-item-text">
+                            {{sighting.description}}
+                        </p>
+                        <p class="text-right list-group-item-text">
+                            {{sighting.author}}
+                        </p>
+                        <button type="button" class="btn btn-default" ng-click="viewSighting(sighting._sightingID)">
+                            view
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>
