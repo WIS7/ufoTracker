@@ -68,8 +68,10 @@ module.exports = function(app, queries) {
             }
             else {
                 var user = new User();
+                console.log(req.body);
                 user.username = req.body.username;
                 user.password = req.body.password;
+                user.email = req.body.email;
                 user.save(function (err){
                     if(err){return next(err);}
                     return res.json({token: user.generateJWT()})
