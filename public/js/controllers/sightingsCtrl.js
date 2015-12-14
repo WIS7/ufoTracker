@@ -40,15 +40,16 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 
 		$scope.addSighting = function(){
 			if(!$scope.title || $scope.title === '' || 
-				!$scope.description || $scope.description === '' ||
-				!$scope.date || $scope.date === '') 
+				!$scope.description || $scope.description === '') 
 			{ 	
 				return;
 			}
 			var dataObj = {
 			  	title: $scope.title,
 			  	description: $scope.description,
-			  	date: $scope.date,
+			  	day: $scope.day,
+			  	month:$scope.month,
+			  	year: $scope.year,
 				url: $scope.url,
 				coordinate: {
 					longitude: $scope.longitude,
@@ -66,7 +67,9 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 
 			$scope.title = '';
 			$scope.description = '';
-			$scope.date ='';
+			$scope.day = "";
+			$scope.month = "";
+			$scope.year = "";
 			$scope.longitude = '';
 			$scope.latitude ='';
 		};

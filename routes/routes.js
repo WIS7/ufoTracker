@@ -41,6 +41,7 @@ module.exports = function(app, queries) {
         var form = req.body;
         form._sightingID = new mongoose.Types.ObjectId;
         form.submittedDate = new Date();
+        form.date = new Date(form.year,form.month - 1,form.month);
         var newSighting = new Sighting(form);
         queries.saveSighting(newSighting, res, next);
     });

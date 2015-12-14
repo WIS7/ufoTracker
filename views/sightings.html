@@ -42,9 +42,12 @@
                             <div class="form-group">
                                 <label for="sightingDate" class="col-sm-2 control-label">Date</label>
                                 <div class="col-sm-10">
-                                    <input type="text" id="sightingDate" class="form-control" placeholder="Date"
-                                           ng-model="date" required>
-                                    <div class="help-block with-errors"></div>
+                                    Day:
+                                    <input ng-model="day" type="number" min="1" max="31">
+                                    Month:
+                                    <input ng-model="month" type="number" min="1" max="12">
+                                    Year:
+                                    <input ng-model="year" type="number" min="1950" max="2100">
                                 </div>
                             </div>
                             <!-- Uploading of an image -->
