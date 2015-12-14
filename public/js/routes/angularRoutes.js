@@ -49,7 +49,7 @@ ufoApp.config(function($stateProvider, $urlRouterProvider) {
         })
 
         .state('search', {
-            url: '/search',
+            url: '/search/{_searchParam}',
             templateUrl: 'search.html',
             controller: 'searchCtrl'
         })

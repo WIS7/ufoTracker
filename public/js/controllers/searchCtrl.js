@@ -1,11 +1,28 @@
 ufoApp.controller('searchCtrl',
-    ['$scope', '$state', 'sightings',
-        function($scope, $state, sightings) {
+    ['$scope', '$stateParams', '$state', 'sightings',
+        function ($scope, $stateParams, $state, sightings) {
+
+            $scope.param = $stateParams._searchParam.toUpperCase();
+
+            var filterSightings = function (sighting) {
+                if (sighting.title.toUpperCase().includes($scope.param)) {
+                    return true
+                }
+                else if (sighting.description.toUpperCase().includes($scope.param)) {
+                    return true
+                }
+                else if (sighting.author.toUpperCase().includes($scope.param)) {
+                    return true
+                }
+                else {
+                    return false
+                }
+            };
 
             var setSightings = function(){
                 sightings.getSightings().
                 success(function(response){
-                    $scope.sightings = response;
+                    $scope.sightings = response.filter(filterSightings);
                 });
             };
 

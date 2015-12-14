@@ -12,10 +12,15 @@
             <ul class="nav navbar-nav">
                 <li><a ui-sref="home">Home</a></li>
                 <li><a ui-sref="sightings">Ufo Sightings</a></li>
-                <li><a ui-sref="search">Search</a></li>
                 <li><a ui-sref="about">About</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" ng-model="searchField" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="button" ng-click="searchAll()" class="btn btn-default">Search</button>
+                </form>
                 <li ng-show="isLoggedIn()" role="presentation" class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         {{ currentUser() }} <span class="caret"></span>
