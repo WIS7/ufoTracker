@@ -1,6 +1,9 @@
 <div class="container">
     <div class="col-sm-6 col-sm-offset-3">
         <h1><span class="glyphicon glyphicon-chevron-right"></span> Login</h1>
+        <div ng-show="error" class="alert alert-danger row">
+            <span>{{ error.message }}</span>
+        </div>
         <!-- LOGIN FORM -->
         <form ng-submit="login()" data-toggle="validator">
             <div class="form-group">
