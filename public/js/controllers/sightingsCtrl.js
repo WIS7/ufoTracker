@@ -13,6 +13,31 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 	    	});
 	    };
 
+        var Notification = window.Notification || window.mozNotification || window.webkitNotification;
+
+        // Need to ask the user for permission to show notifications
+        Notification.requestPermission(function (permission) {
+            // console.log(permission);
+        });
+
+        // Function that shows the notification
+        var showNotification = function() {
+            var instance = new Notification("Sighting was added successfully!");
+
+            instance.onclick = function () {
+                // Something to do
+            };
+            instance.onerror = function () {
+                // Something to do
+            };
+            instance.onshow = function () {
+                // Something to do
+            };
+            instance.onclose = function () {
+                // Something to do
+            };
+        };
+
 		$scope.addSighting = function(){
 			if(!$scope.title || $scope.title === '' || 
 				!$scope.description || $scope.description === '' ||
@@ -35,6 +60,7 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 			sightings.postSighting(dataObj).success(function(){
 				//alert("New Sighting added successfully");
 			});
+            showNotification();
  
 			setSightings();  
 
