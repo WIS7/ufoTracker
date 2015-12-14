@@ -2,5 +2,5 @@
 // It is responsible for binding model data to views
 // using $scope
 ufoApp.controller('aboutCtrl', ['$scope', function($scope){
-	$scope.title = "About Page!";
+	$scope.title = "About Us!";
 }]);
