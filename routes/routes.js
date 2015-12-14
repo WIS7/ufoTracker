@@ -40,6 +40,7 @@ module.exports = function(app, queries) {
     app.post('/sightings', auth, function(req, res, next) {
         var form = req.body;
         form._sightingID = new mongoose.Types.ObjectId;
+        form.submittedDate = new Date();
         var newSighting = new Sighting(form);
         queries.saveSighting(newSighting, res, next);
     });

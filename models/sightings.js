@@ -9,6 +9,7 @@ var sightingSchema = new mongoose.Schema({
     comments: [mongoose.Schema.Types.ObjectId],
     url: String,
     date: String, // voorlopig
+    submittedDate: Date,
     coordinate: {
     	longitude: {type: Number, default: 4.3575},
     	latitude: {type: Number, default: 50.7465}

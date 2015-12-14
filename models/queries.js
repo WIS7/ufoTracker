@@ -60,10 +60,12 @@ module.exports = {
         })
     },
 	getAllSightings: function(res, next){
-        Sighting.find(function(err, sightings){
-            if(err){return next(err);}
-            res.json(sightings);
-         });
+        Sighting.find({}).sort({'submittedDate': 'desc'}).exec(
+            function(err, sightings){
+                if(err){return next(err);}
+                res.json(sightings);
+             }
+        );
 	},
 	saveSighting: function(sighting, res, next){
         sighting.save(function(err){
