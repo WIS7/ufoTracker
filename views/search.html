@@ -21,10 +21,10 @@
             <p class="text-right list-group-item-text">
                 {{sighting.author}}
             </p>
-            <button class='btn btn-warning' ng-click="viewSighting(selectedSighting.originalObject._sightingID)">
+            <button class='btn btn-warning' ng-click="viewSighting(sighting._sightingID)">
                 View Sighting
             </button>
-            <button class="btn btn-info" ng-click="viewUser(selectedSighting.originalObject.author)">
+            <button class="btn btn-info" ng-click="viewUser(sighting.author)">
                 View Author Profile
             </button>
         </div>
