@@ -1,9 +1,18 @@
-ufoApp.controller('profileCtrl', ['$scope','auth', 'sightings',
-	function($scope, auth, sightings){
-		$scope.currentUser = auth.currentUser;
+ufoApp.controller('profileCtrl', ['$scope', '$stateParams', 'auth', 'sightings',
+	function ($scope, $stateParams, auth, sightings) {
 		$scope.sighting = {};
-		
-		var username = auth.currentUser();
+		$scope.readOnly = false;
+
+		// Check if someone is visiting a profile or just opening his own
+		if ($stateParams._username === '') {
+			// No username provided so just opening his own
+			$scope.user = auth.currentUser()
+		}
+		else {
+			// Username provided so no editing possible
+			$scope.readOnly = true;
+			$scope.user = $stateParams._username
+		}
 
 		var Notification = window.Notification || window.mozNotification || window.webkitNotification;
 
@@ -35,14 +44,24 @@ ufoApp.controller('profileCtrl', ['$scope','auth', 'sightings',
 		    	success(function(response){
 	    			$scope.sightings = response;
 	    	});
-	    };		
+		};
+
+		var getUserInfo = function (_username) {
+			sightings.getUserInfo(_username)
+				.success(function (response) {
+					$scope.username = response.username;
+					$scope.email = response.email;
+					$scope.firstname = response.firstname;
+					$scope.lastname = response.lastname;
+				})
+		};
 
 	    $scope.deleteSighting = function(sighting){
 		    sightings.deleteUserSighting(sighting).
 		    	success(function() {
 					showNotification("Sighting was successfully deleted");
 	    	});
-		    setSightings(username);
+			setSightings($scope.user);
 	    };
 
 	    $scope.getSighting = function(sighting){
@@ -54,8 +73,9 @@ ufoApp.controller('profileCtrl', ['$scope','auth', 'sightings',
 		    	success(function() {
 					showNotification("Sighting was successfully edited");
 	    	});
-		    setSightings(username);
+			setSightings($scope.user);
 	    };
 
-	    setSightings(username);
+		setSightings($scope.user);
+		getUserInfo($scope.user)
 }]);

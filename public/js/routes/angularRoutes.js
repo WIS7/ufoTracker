@@ -29,7 +29,7 @@ ufoApp.config(function($stateProvider, $urlRouterProvider) {
         })
 
         .state('profile', {
-              url: '/profile', 
+            url: '/profile/{_username}',
               templateUrl: 'profile.html',
               controller: 'profileCtrl'
         })

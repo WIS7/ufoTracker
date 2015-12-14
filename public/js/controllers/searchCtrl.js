@@ -13,6 +13,13 @@ ufoApp.controller('searchCtrl',
                 $state.go('sighting', {_sightingID: sightingID});
             };
 
+            $scope.viewUser = function (username) {
+                console.log(username);
+                $state.go('profile', {
+                    _username: username
+                })
+            };
+
             setSightings();
         }
     ]

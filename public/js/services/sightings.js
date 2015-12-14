@@ -11,6 +11,14 @@ ufoApp.factory('sightings', ['$http', 'auth', function($http, auth){
 			});
 	};
 
+	obj.getUserInfo = function (username) {
+		return $http.get('/user', {
+			params: {
+				"username": username
+			}
+		});
+	};
+
 	obj.getUserSightings = function(username){
 		return $http.get('/user/sightings/', { 
 			params:

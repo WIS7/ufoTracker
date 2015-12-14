@@ -59,6 +59,19 @@ module.exports = {
             res.json(users)
         })
     },
+    getUser: function (_username, res, next) {
+        var obj = {
+            'username': _username
+        };
+        var query = User.findOne(obj);
+        query.select('username email firstname lastname');
+        query.exec(function (err, user) {
+            if (err) {
+                return next(err)
+            }
+            res.json(user)
+        })
+    },
 	getAllSightings: function(res, next){
         Sighting.find({}).sort({'submittedDate': 'desc'}).exec(
             function(err, sightings){

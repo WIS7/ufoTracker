@@ -1,20 +1,33 @@
 <section>
 			<h1 class="text-center">User info!</h1>			
     <div class="row">
-	<tr>    <td>Username:</td>    <td>{{ currentUser() }}</td>   </tr>    
+		<tr>
+			<td>Username:</td>
+			<td>{{ username }}</td>
+		</tr>
 	<br>
-    <tr>    <td>Firstname:</td>    <td>{{user.firstName}}</td>   </tr>
+		<tr>
+			<td>Firstname:</td>
+			<td>{{ firstName }}</td>
+		</tr>
     <br>
-    <tr>    <td>Secondname:</td>    <td>{{user.lastName}}</td>       </tr>
+		<tr>
+			<td>Secondname:</td>
+			<td>{{ lastName }}</td>
+		</tr>
     <br>
-    <tr>    <td>Email:</td>    <td>{{user.email}}</td>         </tr>
+		<tr>
+			<td>Email:</td>
+			<td>{{ email }}</td>
+		</tr>
     <br>
    <!-- <tr>    <td>Birthday:</td>    <td>{{user.birthday}}</td>         </tr>
     <br>
     <tr>    <td>sex:</td>    <td>{{user.sex}}</td>         </tr>   -->
     <br><br>
-			
-			<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">Edit user info	
+
+		<button ng-hide="{{ readOnly }}" type="button" class="btn btn-warning" data-toggle="modal"
+				data-target="#myModal">Edit user info
 				</button>			
 				
 				</section>
@@ -82,8 +95,11 @@
 			 		<p class="text-right list-group-item-text">
 				 		{{sighting.author}}
 			 		</p>
-			 		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalEditSighting" ng-click="getSighting(sighting)">Edit</button>	 	
-			 		<button class="btn btn-danger" ng-click="deleteSighting(sighting)">Delete</button>	
+					<button ng-hide="{{ readOnly }}" type="button" class="btn btn-info" data-toggle="modal"
+							data-target="#ModalEditSighting" ng-click="getSighting(sighting)">Edit
+					</button>
+					<button ng-hide="{{ readOnly }}" class="btn btn-danger" ng-click="deleteSighting(sighting)">Delete
+					</button>
 		 		</div>
 			</div>
 		</div>

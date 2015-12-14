@@ -14,6 +14,11 @@ module.exports = function(app, queries) {
         queries.getSighting(_sightingID, res, next);
     });
 
+    app.get('/user', function (req, res, next) {
+        var username = req.query.username;
+        queries.getUser(username, res, next);
+    });
+
     app.get('/user/sightings', function(req, res, next){
         var author = req.query.author;
         queries.getUserSightings(author, res, next);
