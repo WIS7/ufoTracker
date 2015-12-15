@@ -4,10 +4,19 @@ ufoApp.controller('sightingCtrl',
 		var ID = $stateParams._sightingID;
 		$scope.ID = ID;
 		$scope.isLoggedIn = auth.isLoggedIn;
+		$scope.defaultImage = false;
+
 	    var setSighting = function(){
 		    sightings.getOneSighting(ID).
 		    	success(function(response){
 	    			$scope.sighting = response;
+				if ($scope.sighting.url === undefined) {
+					$scope.imageUrl = "images/default.png";
+					$scope.defaultImage = true
+				}
+				else {
+					$scope.imageUrl = $scope.sighting.url
+				}
 	    	});
 	    };
 	    var setComments = function(){

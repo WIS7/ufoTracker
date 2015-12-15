@@ -20,7 +20,9 @@
 			<div ng-controller="mapCtrl">
 				<div id="map_canvas" style="width: 100%; height: 300px;"></div>
 			</div>
-			<img src="{{sighting.url}}" alt="No image provided" class="img-responsive">
+			<img ng-hide="defaultImage" src="{{imageUrl}}" alt="No image provided" class="center-block img-responsive">
+			<img ng-show="defaultImage" src="{{imageUrl}}" alt="No image provided" class="center-block img-responsive"
+				 style="width: 320px;height: 320px">
 			<hr>
 			<h4 class="text-center lead">Comment Section</h4>
 			<hr>
