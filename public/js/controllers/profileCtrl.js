@@ -10,9 +10,12 @@ ufoApp.controller('profileCtrl', ['$scope', '$stateParams', 'auth', 'sightings',
 			$scope.userProfile.username = auth.currentUser()
 		}
 		else {
-			// Username provided so no editing possible
-			$scope.readOnly = true;
-			$scope.user = $stateParams._username
+			// Username provided, check if it is the current user
+			if ($stateParams._username !== auth.currentUser()) {
+				// Logged in user is viewing another profile, no editing possible
+				$scope.readOnly = true;
+			}
+			$scope.userProfile.username = $stateParams._username
 		}
 
 		var Notification = window.Notification || window.mozNotification || window.webkitNotification;
