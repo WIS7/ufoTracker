@@ -19,6 +19,13 @@ module.exports = function(app, queries) {
         queries.getUser(username, res, next);
     });
 
+  app.put('/user', function (req, res, next) {
+        var user = req.body;
+        console.log(user.params);
+        queries.editUser(user.params, res, next);
+    });
+
+
     app.get('/user/sightings', function(req, res, next){
         var author = req.query.author;
         queries.getUserSightings(author, res, next);

@@ -72,6 +72,28 @@ module.exports = {
             res.json(user)
         })
     },
+
+    editUser: function (user, res, next){
+        var  username = user.username;
+        var email= user.email;
+        var firstname = user.firstname;
+        var lastname = user.lastname;
+       User.update(
+            { "username": username},
+                {"$set": 
+                    {
+                    "email": email,
+                    "firstname": firstname,
+                    "lastname": lastname
+                    }
+                },
+            function(err) {
+                if(err){return next(err);}
+                res.send('EDIT request successful'); 
+            }
+        );  
+    },
+
 	getAllSightings: function(res, next){
         Sighting.find({}).sort({'submittedDate': 'desc'}).exec(
             function(err, sightings){
