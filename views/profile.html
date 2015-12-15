@@ -38,24 +38,41 @@
 						</form>      
 	      			</div>
 	      			<div class="modal-footer">
-			  			<button type="button" class="btn btn-info"  ng-click="editUserProfile(userProfile)" data-dismiss="modal">Edit userProfile</button>
+			  			<button type="button" class="btn btn-info"  ng-click="editUserProfile(userProfile)" data-dismiss="modal">Edit User Profile</button>
 	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	      			</div>
 		    	</div>
 			</div>		
 		</div>
-		 			{{userProfile.firstname}}
+</section>
 
-			 		{{userProfile.lastname}}
-		 	
-			 		{{userProfile.email}}
-		 		
-				<button ng-hide="{{ readOnly }}" type="button" class="btn btn-info" data-toggle="modal"
+<section>
+	<table style="width:50%">
+		<tr>
+    		<td>Username:</td>
+    		<td>{{userProfile.username}}</td>     
+  		</tr>
+		<tr>
+    		<td>First Name:</td>
+    		<td>{{userProfile.firstname}}</td>     
+  		</tr>
+  		<tr>
+    		<td>Last Name:</td>
+    		<td>{{userProfile.lastname}}</td>     
+  		</tr>
+  		<tr>
+    		<td>E-mail:</td>
+    		<td>{{userProfile.email}}</td>     
+  		</tr>
+	</table>	
+	<p align="right"> 		 		
+		<button ng-hide="{{ readOnly }}" type="button" class="btn btn-info" data-toggle="modal"
 							data-target="#ModalEditProfile">Edit
-				</button>
-
-	</section>
-
+		</button>
+	</p>
+	
+</section>
+	
 
 	<section>
 		<h1 class="text-center">Your sightings</h1>
