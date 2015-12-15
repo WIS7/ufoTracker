@@ -5,6 +5,7 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 		$scope.titlePage = "Post a new Sighting!";
 	    $scope.isLoggedIn = auth.isLoggedIn;
 		$scope.main.content = "";
+		$('#myModal').validator();
 
 	    var setSightings = function(){
 		    sightings.getSightings().

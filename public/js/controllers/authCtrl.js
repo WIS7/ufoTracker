@@ -2,6 +2,7 @@ ufoApp.controller('authCtrl',
   ['$scope', '$state', 'auth',
   function($scope, $state, auth){
     $scope.user = {};
+    $('#myForm').validator();
     
     $scope.signup = function(){
       auth.signup($scope.user).error(function(error){

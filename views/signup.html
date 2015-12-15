@@ -5,7 +5,7 @@
             <span>{{ error.message }}</span>
         </div>
         <!-- SIGNUP FORM -->
-        <form ng-submit="signup()" data-toggle="validator">
+        <form id="myForm" ng-submit="signup()" data-toggle="validator">
             <div class="form-group">
                 <label>E-mail</label>
                 <input type="email" class="form-control" ng-model="user.email" required>

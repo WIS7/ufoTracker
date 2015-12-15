@@ -5,7 +5,7 @@
             <span>{{ error.message }}</span>
         </div>
         <!-- LOGIN FORM -->
-        <form ng-submit="login()" data-toggle="validator">
+        <form id="myForm" ng-submit="login()" data-toggle="validator">
             <div class="form-group">
                 <label for="username" class="control-label">Username</label>
                 <input type="text" id="username" class="form-control" ng-model="user.username" required>
