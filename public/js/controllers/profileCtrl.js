@@ -59,7 +59,6 @@ ufoApp.controller('profileCtrl', ['$scope', '$stateParams', 'auth', 'sightings',
 		var getUserInfo = function (username) {
 			sightings.getUserInfo(username)
 				.success(function (profile) {
-					console.log(profile);
 					$scope.userProfile = profile;
 				})
 		};
@@ -77,7 +76,7 @@ ufoApp.controller('profileCtrl', ['$scope', '$stateParams', 'auth', 'sightings',
 		    sightings.deleteUserSighting(sighting).
 		    	success(function() {
 					showNotification("Sighting was successfully deleted");
-					setSightings($scope.user);
+					setSightings($scope.userProfile.username);
 	    	});
 	    };
 
