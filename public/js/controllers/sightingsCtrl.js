@@ -10,6 +10,12 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 	    var setSightings = function(){
 		    sightings.getSightings().
 		    	success(function(response){
+    			for(var i=0;i<response.length;i++){
+			        var obj = response[i];
+					if (obj.url === undefined) {
+						obj.url = "images/default.png";
+					}
+			    }
 	    			$scope.sightings = response;
 	    	});
 	    };
@@ -166,6 +172,14 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 		$scope.viewSighting = function(sightingID){
 			$state.go('sighting', {_sightingID: sightingID});
 		};
+        
+        $scope.viewUser = function (username) {
+                console.log(username);
+                $state.go('profile', {
+                    _username: username
+                })
+        };
+
 		setSightings();
 	}
 ]);

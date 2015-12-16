@@ -22,6 +22,12 @@ ufoApp.controller('searchCtrl',
             var setSightings = function(){
                 sightings.getSightings().
                 success(function(response){
+                    for(var i=0;i<response.length;i++){
+                        var obj = response[i];
+                        if (obj.url === undefined) {
+                            obj.url = "images/default.png";
+                        }
+                    }
                     $scope.sightings = response.filter(filterSightings);
                 });
             };

@@ -46,6 +46,12 @@ ufoApp.controller('profileCtrl', ['$scope', '$stateParams', 'auth', 'sightings',
 	    var setSightings = function(username){
 		    sightings.getUserSightings(username).
 		    	success(function(response){
+    			for(var i=0;i<response.length;i++){
+			        var obj = response[i];
+					if (obj.url === undefined) {
+						obj.url = "images/default.png";
+					}
+			    }
 	    			$scope.sightings = response;
 	    	});
 		};
@@ -71,8 +77,8 @@ ufoApp.controller('profileCtrl', ['$scope', '$stateParams', 'auth', 'sightings',
 		    sightings.deleteUserSighting(sighting).
 		    	success(function() {
 					showNotification("Sighting was successfully deleted");
+					setSightings($scope.user);
 	    	});
-			setSightings($scope.user);
 	    };
 
 	    $scope.getSighting = function(sighting){
