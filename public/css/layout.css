@@ -104,7 +104,7 @@ blockquote {
   padding-left: 25px;
   padding-right: 30px;
   position: relative;
-  border-left: 0;
+  border: 1px;
   margin-bottom: 0;
 }
 .navbar {
