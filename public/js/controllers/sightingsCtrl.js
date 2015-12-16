@@ -142,10 +142,20 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 			var map = new google.maps.Map(document.getElementById("map_canvas"), options);
-			var mapsAddress = $scope.address;
-			var geocoderRequest = {
-				address: mapsAddress
-			};
+			var geocoderRequest = '';
+			if (!$scope.latitude || $scope.latitude === '' || !$scope.longitude || $scope.longitude === '') {
+				geocoderRequest = {
+					address: $scope.address
+				}
+			}
+			else {
+				geocoderRequest = {
+					location: {
+						lat: $scope.latitude,
+						lng: $scope.longitude
+					}
+				}
+			}
 			var geocoder = new google.maps.Geocoder();
 			geocoder.geocode(geocoderRequest, function(results, status){
 				if (status == google.maps.GeocoderStatus.OK) {
