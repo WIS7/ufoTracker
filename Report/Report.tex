@@ -52,6 +52,12 @@ For this requirement we went ahead and implemented following HTML5 specific feat
 \end{itemize}
 
 \subsection{Web Services}
+Our initial idea was to provide weather data for each sighting. Sadly, we realised that weather data is mostly aimed at forecasting and not at historical information for a specific date. We then decided to Imgur API\footnote{The Imgur API: \url{http://api.imgur.com}} since our goal from the start was the ability for the user to upload an image when posting a sighting.  Hosting images ourselves isn't really scalable so using this external web service helps us a lot.
+Usage of the Imgur API happens on two occasions:
+\begin{itemize}
+\item Home page: When a user lands on our homepage, we sent a GET request to the API in order to receive 50 images taken from the UFO gallery. That way we can show the user something interesting but also relevant. That way we might have even room for sponsored images.
+\item New Sighting: When posting a new sighting a user should be able to provide an image of what he/she has just seen. As said before, we're not interested in hosting these images ourselves so that's where the angular-imgur-upload\footnote{Angular.js Imgur Upload service: \url{https://github.com/purple-circle/angular-imgur-upload}} library comes in. After the user has selected an image to upload, we use this library to sent it to Imgur. We then save the url to the image in our sighting, a url we get from the response of the Imgur API.
+\end{itemize}
 
 \subsection{Provide data}
 
