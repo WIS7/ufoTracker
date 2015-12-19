@@ -1,0 +1,42 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{graphicx}
+
+\title{Web Technologies: Report}
+\author{Jannick Hemelhof, Roberto Ristuccia, Youssef Boudiba}
+
+\begin{document}
+
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\section{Introduction}
+Intro with some info about the project: basic idea, how we handled being in a group, etc.
+
+\section{Design}
+Design of our web app, maybe show a diagram or two
+
+\section{Handling of Requirements}
+\subsection{User can register/log in}
+
+\subsection{User has a profile}
+
+\subsection{User can manipulate data}
+Look at/search/add and edit
+
+\subsection{Social aspect is needed}
+
+\subsection{Usage of AJAX}
+
+\subsection{Form validity}
+While thinking about handling this requirement our initial thoughts saw form validation as something that would happen on the server side of our application. Rereading the assignment gave some other insights and discovering the very neat validator.js (source) library showed us that client side validation could look good and was straightforward to implement.
+\begin{itemize}
+	\item Server side: We have built in some checks that ensure a consistent status of our database: When registering a username needs to be unique and the required fields need to be filled out. The check for required fields is also present on the client side but since someone can manipulate requests to maybe remove some data after the client side check an insurance policy was needed on the server side. These checks for required fields are present all over the server side where data is being received.
+	\item Client side: We added some basic checks: Required fields need to be filled out and, by using the HTML5 input fields, designated input fields need to have a value that corresponds with the type of field. When there is an error (e.g. a required field wasn't filled in) the field is marked and an error is shown explaining what the problem is. This is possible thank to the validator.js library.
+\end{itemize}
+
+\end{document}
