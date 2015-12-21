@@ -3,6 +3,7 @@
 \usepackage{fullpage}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{longtable}
 
 \title{Web Technologies: Report}
 \author{Jannick Hemelhof, Roberto Ristuccia, Youssef Boudiba}
@@ -60,6 +61,72 @@ Usage of the Imgur API happens on two occasions:
 \end{itemize}
 
 \subsection{Provide data}
+Providing our data so others can use it is a straightforward and easily accomplished task. We went further with that idea and provide a simple API so developers can develop their own applications for managing UFO sightings using our infrastructure. We support following commands:
+\begin{center}
+    \begin{longtable}{ |  l  |  l  |  l  |  p{2cm}  |  p{2.6cm}  |  p{3cm}  | }
+    \hline
+    Idea & Type & Path & Auth header & Parameters & Return value \\ \hline
+    Register a user & POST & /signup & no & \begin{itemize}
+    \item username
+    \item password
+    \item email
+\end{itemize} & \begin{itemize}
+\item auth token
+\end{itemize} \\ \hline
+    Login a user & POST & /login & no & \begin{itemize}
+    \item username
+    \item password
+\end{itemize} & \begin{itemize}
+\item auth token
+\end{itemize} \\ \hline
+    Get user info & GET & /user & no & \begin{itemize}
+    \item username
+\end{itemize}     & \begin{itemize}
+\item username
+\item email
+\item firstname
+\item lastname
+\end{itemize} \\ \hline
+    Update user info & PUT & /user & yes & \begin{itemize}
+    \item username
+    \item email
+    \item firstname
+    \item lastname
+\end{itemize}     & \\ \hline
+Get sightings & GET & /sightings & no & & \begin{itemize}
+\item sightings
+\end{itemize} \\ \hline
+Add sighting & POST & /sightings & yes & \begin{itemize}
+\item title
+\item description
+\item day
+\item month
+\item year
+\item url
+\item coordinate
+\item author
+\end{itemize} & \\ \hline
+Post comment & POST & /comment & yes & \begin{itemize}
+\item content
+\item author
+\item sightingID
+\end{itemize} & \\ \hline
+Get sighting & GET & /sighting & no & \begin{itemize}
+\item sightingID
+\end{itemize} & \begin{itemize}
+\item sighting
+\end{itemize} \\ \hline
+Update sighting & PUT & /user/sightings & yes & \begin{itemize}
+\item sightingID
+\item title
+\item description
+\item date
+\end{itemize} & \\ \hline
+Delete sighting & DELETE & /user/sightings & yes & \begin{itemize}
+\item sightingID
+\end{itemize} & \\ \hline
+    \end{longtable}
+\end{center}
 
 \subsection{Responsive design}
 
