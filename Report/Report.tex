@@ -131,6 +131,17 @@ Delete sighting & DELETE & /user/sightings & yes & \begin{itemize}
 \subsection{Responsive design}
 
 \subsection{Google Maps}
+We used the Google Maps API on two occasions:
+\begin{itemize}
+\item New sighting: When a user is reporting a new sighting he should be able to tell where he saw it. He has three options for that:
+\begin{itemize}
+\item Coordinates: He can input longitude + latitude coordinates for the location.
+\item Address: He can input a normal address e.g. Pleinlaan 9, Etterbeek. When previewing the location this address is matched using the Google Maps API and coordinates + address are automatically filled in with the matched location.
+\item Device location: Thanks to HTML5 Geolocation API the user can use the location of his device to automatically fill in the coordinates.
+\end{itemize}
+Previewing the location will show a Google Map with the requested location marked.
+\item Sighting page: When a user is on the detailed sighting page the location where the sighting was seen is shown on a Google Map (location is marked).
+\end{itemize}
 
 \section{Conclusion}
 
