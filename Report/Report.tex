@@ -45,7 +45,14 @@ Server-side the form is intercepted and if everything goes well (username not ta
 
 If everything goes well the user will be logged in and redirected to the “ufo sighting” page.
 
-\subsection{User can register}
+\subsection{User can log in}
+In order to post new sightings in the sighting database, users must be logged in. The process of logging in to the system works the same way as the process of registration. In fact , we also have client-side and server-side validation of the filled form. The difference here is that at server side we actually check whether or not a username exist and if so we make sure that the password associated is correct. Only then can a user log in and like the registration he will be redirected to the sightings page.
+
+When the user press the login button, it fires angular http post request with the filled form (username & password) as parameter. A new user is created server-side and the server respond with a json-web-token. 
+
+The user is now connected or has logged in and is redirected to the “ufo sighting” page.
+
+
 
 \subsection{User has a profile}
 When you register you've to give your e-mail and choose an username. After that you can expand your profile by editing it so you can add your frist name and last name. You can also change your e-email adress, but not your username.
