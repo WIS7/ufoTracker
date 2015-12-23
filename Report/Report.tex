@@ -37,7 +37,15 @@ As for the architecture of the stack, Figure 1 shows how an http request is hand
 \end{figure}
 
 \section{Handling of Requirements}
-\subsection{User can register/log in}
+\subsection{User can register}
+Users need to register themselves first in order to be able to log in into the system.  This happens at the signup page. Whenever users register themselves, two kind of checkups occurs. On one hand we have client-side validation of the form (username, password and e-mail), which is done by  HTML5 validators. On the other hand we have server-side validation which makes sure that the username is not already taken. 
+
+Once the user filled in all the fields (and the username is not taken) , he can press the signup button which will fire angular http post request with the filled form as parameter.
+Server-side the form is intercepted and if everything goes well (username not taken) a new user is created in the mongodb database. As a result, a json-web-token is generated and send back to the client where it will be stored in the  Local Storage. The token is used for session management and will remain 24 hour after which it needs to be refreshed.
+
+If everything goes well the user will be logged in and redirected to the “ufo sighting” page.
+
+\subsection{User can register}
 
 \subsection{User has a profile}
 When you register you've to give your e-mail and choose an username. After that you can expand your profile by editing it so you can add your frist name and last name. You can also change your e-email adress, but not your username.
