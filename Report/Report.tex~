@@ -17,10 +17,24 @@
 \pagenumbering{arabic}
 
 \section{Introduction}
-You like taking pictures of strange things that happens around us? You want to share it with your friends, family, our other people with the same passion? You will surely love the website we created. On our site you can share/edit/comment/watch pictures of strange sighthings from everywhere around the world. So, let's collect those strange sightings
+Do you like taking pictures of strange things that happen around us? Do you want to share it with your friends, family and other people with the same passion? If you answered yes on all those questions then you will surely love the website we created. Add new sightings while marking the location where it took place. Watch sightings posted by other people and comment to start a discussion. Search through our database for a specific sighting, visit the profiles of other UFO spotters and get in touch! So why are you still reading this? Let's collect those strange sightings!
 
 \section{Design}
-Design of our web app, maybe show a diagram or two
+For the project we made use of the so called MEAN stack. This stack incorporates following components:
+\begin{itemize}
+\item MongoDB, a NoSQL database
+\item Express.js, a web application framework that runs on Node.js
+\item Angular.js, a JavaScript MVC\footnote{Model-View-Controller} framework that runs in browser JavaScript engines
+\item Node.js, an execution environment for event-driven server-side and networking applications
+\end{itemize}
+We picked this application stack because it let us program client and server side in the same language, being JavaScript. 
+As for the architecture of the stack, Figure 1 shows how an http request is handled
+\begin{figure}[hb]%                 use [hb] only if necceccary!
+  \centering
+  \includegraphics[width=15cm]{architecture}
+  \caption{Image source: \url{http://lgitsmart.com/2015/02/25/mean-one-language-to-rule-them-all/}}
+  \label{fig:test}
+\end{figure}
 
 \section{Handling of Requirements}
 \subsection{User can register/log in}
