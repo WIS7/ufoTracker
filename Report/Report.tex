@@ -56,8 +56,31 @@ The user is now connected or has logged in and is redirected to the “ufo sight
 
 \subsection{User has a profile}
 When you register you've to give your e-mail and choose an username. After that you can expand your profile by editing it so you can add your frist name and last name. You can also change your e-email adress, but not your username.
+
 \subsection{User can manipulate data}
-Look at/search/add and edit
+
+\subsubsection{Sightings page}
+Connected users and guest users can view a list of all the sightings on the “ufo sighting” page. Of course only connected users can post new sightings. The sightings page shows a list of all sightings present in the database and make sure recently added sightings are shown first.
+
+Whenever a user visit the “ufo sighting” page, an http get request is triggered which will retrieve all the sighting from the database.
+
+\subsubsection{Search for a sighting}
+(Guest) users can search for a specific sighting by making use of the search box present in the navigation bar. First all sightings are retrieved from the database via http get request. After that a filter is applied which will filter only the sightings that are relevant.
+
+\subsubsection{Add new sighting}
+As mentioned earlier, only connected user can post new sightings. This happen on the “ufo sighting” page by pressing the “Post a new sighting” button. A modal form will pop up. The user will be asked to fill in all necessary information (title, description, etc.). A form validation occurs on client side. If a user doesn’t upload a picture, a default will be chosen instead. Same goes for the location. 
+
+All that’s left is to press the “New Sighting” button, which will fire angular http post request with the filled form and the json-web-token as parameter. At the server-side addition information will be added to the form, such as a unique ID and the date the sighting has been posted. Now all that’s left is to save the sighting in the database.
+
+\subsubsection{Edit and delete sightings}
+Any user can edit or delete his sightings. This happens on the profile page. A list of the user’s sightings will be shown along with two buttons: “edit” and “delete”. Currently only the title and description can be edited. Deleting the sighting from the database only require to press the delete button.
+
+The way this works is pretty straightforward. 
+First the user get all his sightings via http get request with the username as parameter. The server respond with a list of all the user’s sightings. 
+Whenever a user press the edit button on a specific sighting a modal form pop up. Now the user can edit the title and the description of the sighting. After applying some modification the user can press the “Edit Sighting” button which will fire angular http put request with the new form and the user’s json-web-token as parameter. At server-side the modification are applied.
+As mentioned above, deleting a sighting only requires the user to press the delete button, which will trigger angular delete request with the token and the sighting as parameter. At server-side the right sighting is looked up via ID and deleted.
+
+
 
 \subsection{Social aspect is needed}
 
