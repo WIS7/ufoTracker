@@ -1,3 +1,4 @@
+// Controller for the Profile page
 ufoApp.controller('profileCtrl', ['$scope', '$stateParams', 'auth', 'sightings',
 	function ($scope, $stateParams, auth, sightings) {
 		$scope.sighting = {};
@@ -18,6 +19,7 @@ ufoApp.controller('profileCtrl', ['$scope', '$stateParams', 'auth', 'sightings',
 			$scope.userProfile.username = $stateParams._username
 		}
 
+		// ** Notification setup **
 		var Notification = window.Notification || window.mozNotification || window.webkitNotification;
 
 		// Need to ask the user for permission to show notifications
@@ -42,7 +44,8 @@ ufoApp.controller('profileCtrl', ['$scope', '$stateParams', 'auth', 'sightings',
 				// Something to do
 			};
 		};
-		
+
+		// Ensure the sightings for the requested user are loaded
 	    var setSightings = function(username){
 		    sightings.getUserSightings(username).
 		    	success(function(response){
@@ -56,6 +59,7 @@ ufoApp.controller('profileCtrl', ['$scope', '$stateParams', 'auth', 'sightings',
 	    	});
 		};
 
+		// Ensure the user info for the requested user is loaded
 		var getUserInfo = function (username) {
 			sightings.getUserInfo(username)
 				.success(function (profile) {
@@ -63,6 +67,7 @@ ufoApp.controller('profileCtrl', ['$scope', '$stateParams', 'auth', 'sightings',
 				})
 		};
 
+		// Handle editing of user profile
 		$scope.editUserProfile = function (userProfile){
 			   sightings.editUserInfo(userProfile).
 		    	success(function() {
@@ -71,7 +76,7 @@ ufoApp.controller('profileCtrl', ['$scope', '$stateParams', 'auth', 'sightings',
 			getUserInfo($scope.userProfile.username);
 	    };
 
-
+			// Handle deleting of a specific sighting
 	    $scope.deleteSighting = function(sighting){
 		    sightings.deleteUserSighting(sighting).
 		    	success(function() {
@@ -84,6 +89,7 @@ ufoApp.controller('profileCtrl', ['$scope', '$stateParams', 'auth', 'sightings',
 			$scope.sighting = sighting;
 	    };
 
+			// Handle editing of a specific sighting
 	    $scope.editSighting = function(sighting){
 		    sightings.editUserSighting(sighting).
 		    	success(function() {

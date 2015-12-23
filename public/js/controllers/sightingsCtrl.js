@@ -1,12 +1,15 @@
+// Controller for the Sightings page
 ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','auth', 'imgurUpload',
 	function($scope,$state,$timeout,sightings,auth,imgurUpload){
 		$scope.main = {};
 		$scope.mapsBoolean = true;
 		$scope.titlePage = "Post a new Sighting!";
-	    $scope.isLoggedIn = auth.isLoggedIn;
+	  $scope.isLoggedIn = auth.isLoggedIn;
 		$scope.main.content = "";
+		// Ensure validation on the New Sighting modal is active
 		$('#myModal').validator();
 
+			// Ensure sightings are loaded
 	    var setSightings = function(){
 		    sightings.getSightings().
 		    	success(function(response){
@@ -20,6 +23,7 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 	    	});
 	    };
 
+			// Notification setup
         var Notification = window.Notification || window.mozNotification || window.webkitNotification;
 
         // Need to ask the user for permission to show notifications
@@ -45,10 +49,11 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
             };
         };
 
+				// Add a new sighting
 		$scope.addSighting = function(){
-			if(!$scope.title || $scope.title === '' || 
-				!$scope.description || $scope.description === '') 
-			{ 	
+			if(!$scope.title || $scope.title === '' ||
+				!$scope.description || $scope.description === '')
+			{
 				return;
 			}
 			var dataObj = {
@@ -57,8 +62,8 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 			  	day: $scope.day,
 			  	month:$scope.month,
 			  	year: $scope.year,
-				url: $scope.url,
-				coordinate: {
+					url: $scope.url,
+					coordinate: {
 					longitude: $scope.longitude,
 					latitude: $scope.latitude
 				},
@@ -68,9 +73,9 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 			sightings.postSighting(dataObj).success(function(){
 				//alert("New Sighting added successfully");
 			});
-            showNotification();
- 
-			setSightings();  
+      showNotification();
+
+			setSightings();
 
 			$scope.title = '';
 			$scope.description = '';
@@ -83,6 +88,7 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 
 		$scope.uploadProgress = 0;
 
+		// Upload image to Imgur
 		$scope.upload = function(element) {
 			// What to do when the upload was successful?
 			var success = function(result) {
@@ -116,6 +122,7 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 
 		};
 
+		// Get current location
 		$scope.getMyLocation = function() {
 			function showPosition(position) {
 				$scope.latitude = position.coords.latitude;
@@ -134,6 +141,7 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 			$scope.mapsBoolean = true;
 		};
 
+		// Preview location on a Google Map
 		$scope.previewLocation = function() {
 			var options =
 			{
@@ -179,16 +187,18 @@ ufoApp.controller('sightingsCtrl',['$scope', '$state', '$timeout', 'sightings','
 			$scope.mapsBoolean = false;
 		};
 
+		// View a specific sighting
 		$scope.viewSighting = function(sightingID){
 			$state.go('sighting', {_sightingID: sightingID});
 		};
-        
-        $scope.viewUser = function (username) {
-                console.log(username);
-                $state.go('profile', {
-                    _username: username
-                })
-        };
+
+		// View a specific profile
+    $scope.viewUser = function (username) {
+            console.log(username);
+            $state.go('profile', {
+                _username: username
+            })
+    };
 
 		setSightings();
 	}

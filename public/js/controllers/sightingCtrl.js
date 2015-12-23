@@ -1,3 +1,4 @@
+// Controller for the Sighting page
 ufoApp.controller('sightingCtrl',
 	['$scope', '$stateParams', 'sightings', 'auth',
 	function($scope,$stateParams, sightings, auth){
@@ -5,6 +6,7 @@ ufoApp.controller('sightingCtrl',
 		$scope.ID = ID;
 		$scope.isLoggedIn = auth.isLoggedIn;
 
+			// Ensure sighting is loaded
 	    var setSighting = function(){
 		    sightings.getOneSighting(ID).
 		    	success(function(response){
@@ -14,6 +16,7 @@ ufoApp.controller('sightingCtrl',
 				}
 	    	});
 	    };
+			// Ensure comments are loaded
 	    var setComments = function(){
 		    sightings.getComments(ID).
 		    	success(function(response){
@@ -21,10 +24,11 @@ ufoApp.controller('sightingCtrl',
 	    	});
 	    };
 
+			// Save a comment
 		$scope.writeComment = function(){
 			var sightingID = ID;
 			var content = $scope.comment;
-			if(!content || content === '') 
+			if(!content || content === '')
 			{return;}
 			var dataObj = {
 			  	content: content,
