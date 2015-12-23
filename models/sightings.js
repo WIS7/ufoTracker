@@ -1,9 +1,13 @@
-// Mongoose schema definition for sightings
+/*
+MongoDB model that represents a UFO Sighting
+*/
+// Grab some required stuff
 var mongoose = require('mongoose');
 
+// Create the schema for the model
 var sightingSchema = new mongoose.Schema({
     _sightingID: mongoose.Schema.Types.ObjectId,
-	title: String,
+	  title: String,
     description: String,
     author: String,
     comments: [mongoose.Schema.Types.ObjectId],
@@ -16,5 +20,5 @@ var sightingSchema = new mongoose.Schema({
     }
 });
 
-
+// Export our model
 module.exports = mongoose.model('Sighting', sightingSchema);

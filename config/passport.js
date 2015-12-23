@@ -1,3 +1,4 @@
+// Grab some required stuff
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
@@ -9,7 +10,6 @@ var User = mongoose.model('User');
 passport.use(new LocalStrategy(
   function(username, password, done) {
       // We're gonna look in the DB for the user
-
       User.findOne({username: username}, function (err, user) {
           if (err) {
               // There was an error while searching, return it
