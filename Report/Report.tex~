@@ -40,7 +40,7 @@ As for the architecture of the stack, Figure 1 shows how an http request is hand
 \subsection{User can register/log in}
 
 \subsection{User has a profile}
-
+When you register you've to give your e-mail and choose an username. After that you can expand your profile by editing it so you can add your frist name and last name. You can also change your e-email adress, but not your username.
 \subsection{User can manipulate data}
 Look at/search/add and edit
 
